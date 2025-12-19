@@ -1,0 +1,126 @@
+{
+  "fontFamily": {
+    "sans": {
+      "$value": "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+      "$type": "fontFamily",
+      "$description": "Primary sans-serif font"
+    },
+    "mono": {
+      "$value": "IBM Plex Mono, Monaco, Cascadia Code, monospace",
+      "$type": "fontFamily",
+      "$description": "Monospace font for code"
+    },
+    "serif": {
+      "$value": "Georgia, serif",
+      "$type": "fontFamily",
+      "$description": "Serif font"
+    }
+  },
+  "fontSize": {
+    "h1": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Heading 1 - 2.125rem"
+    },
+    "h2": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Heading 2 - 1.5rem"
+    },
+    "h3": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Heading 3 - 1.25rem"
+    },
+    "body": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Body text - 0.875rem"
+    },
+    "small": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Small text - 0.75rem"
+    },
+    "label": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Label text - 0.8125rem"
+    }
+  },
+  "fontWeight": {
+    "light": {
+      "$value": "300",
+      "$type": "fontWeight"
+    },
+    "regular": {
+      "$value": "400",
+      "$type": "fontWeight"
+    },
+    "medium": {
+      "$value": "500",
+      "$type": "fontWeight"
+    },
+    "semibold": {
+      "$value": "600",
+      "$type": "fontWeight"
+    },
+    "bold": {
+      "$value": "700",
+      "$type": "fontWeight"
+    }
+  },
+  "lineHeight": {
+    "h1": {
+      "$value": "1.15",
+      "$type": "number",
+      "$description": "Heading 1 line height"
+    },
+    "h2": {
+      "$value": "1.25",
+      "$type": "number",
+      "$description": "Heading 2 line height"
+    },
+    "h3": {
+      "$value": "1.3",
+      "$type": "number",
+      "$description": "Heading 3 line height"
+    },
+    "body": {
+      "$value": "1.5",
+      "$type": "number",
+      "$description": "Body line height"
+    },
+    "small": {
+      "$value": "1.3",
+      "$type": "number",
+      "$description": "Small text line height"
+    }
+  },
+  "letterSpacing": {
+    "tighter": {
+      "$value": "-0.05em",
+      "$type": "dimension"
+    },
+    "tight": {
+      "$value": "-0.025em",
+      "$type": "dimension"
+    },
+    "normal": {
+      "$value": "0em",
+      "$type": "dimension"
+    },
+    "wide": {
+      "$value": "0.025em",
+      "$type": "dimension"
+    },
+    "wider": {
+      "$value": "0.05em",
+      "$type": "dimension"
+    },
+    "widest": {
+      "$value": "0.1em",
+      "$type": "dimension"
+    }
+  }
+}

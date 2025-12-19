@@ -1,0 +1,477 @@
+================================================================================
+AUTOMATED PERSONA TESTING
+================================================================================
+
+Base URL: http://localhost:3018
+Screenshot Directory: /Users/admin/Documents/claudecode/workspaces/enterprise-ai-support/apps/v17-mode-switcher/testing-screenshots
+
+Total Personas to Test: 10
+Total Quick Actions to Test: 50
+
+================================================================================
+
+TEST INSTRUCTIONS (Manual Execution)
+This script generates test instructions. Use Chrome DevTools MCP to execute.
+
+
+================================================================================
+MODE: GOVERNMENT
+================================================================================
+
+
+Persona 1: COR - Alexa Johnson
+URL: http://localhost:3018/demo/cor
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/cor
+2. Take initial screenshot: government-cor-initial.png
+3. Check console for errors
+
+   Quick Action 1: Contract Status Active
+   - Click "Contract Status Active" button
+   - Wait 5 seconds
+   - Screenshot: government-cor-contract-status-active.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Vendor Performance 92%
+   - Click "Vendor Performance 92%" button
+   - Wait 5 seconds
+   - Screenshot: government-cor-vendor-performance-92-.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Compliance Dashboard ✓
+   - Click "Compliance Dashboard ✓" button
+   - Wait 5 seconds
+   - Screenshot: government-cor-compliance-dashboard-.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Budget Tracking $2.4M
+   - Click "Budget Tracking $2.4M" button
+   - Wait 5 seconds
+   - Screenshot: government-cor-budget-tracking-2-4m.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Deliverables Review 8
+   - Click "Deliverables Review 8" button
+   - Wait 5 seconds
+   - Screenshot: government-cor-deliverables-review-8.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 2: Program Manager - Marcus Rivera
+URL: http://localhost:3018/demo/program-manager
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/program-manager
+2. Take initial screenshot: government-program-manager-initial.png
+3. Check console for errors
+
+   Quick Action 1: Program Overview
+   - Click "Program Overview" button
+   - Wait 5 seconds
+   - Screenshot: government-program-manager-program-overview.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Portfolio Status
+   - Click "Portfolio Status" button
+   - Wait 5 seconds
+   - Screenshot: government-program-manager-portfolio-status.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Risk Assessment
+   - Click "Risk Assessment" button
+   - Wait 5 seconds
+   - Screenshot: government-program-manager-risk-assessment.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Resource Planning
+   - Click "Resource Planning" button
+   - Wait 5 seconds
+   - Screenshot: government-program-manager-resource-planning.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Strategic Goals
+   - Click "Strategic Goals" button
+   - Wait 5 seconds
+   - Screenshot: government-program-manager-strategic-goals.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 3: Project Manager - Taylor Brooks
+URL: http://localhost:3018/demo/project-manager
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/project-manager
+2. Take initial screenshot: government-project-manager-initial.png
+3. Check console for errors
+
+   Quick Action 1: Sprint Status
+   - Click "Sprint Status" button
+   - Wait 5 seconds
+   - Screenshot: government-project-manager-sprint-status.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Team Velocity
+   - Click "Team Velocity" button
+   - Wait 5 seconds
+   - Screenshot: government-project-manager-team-velocity.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Issue Tracker
+   - Click "Issue Tracker" button
+   - Wait 5 seconds
+   - Screenshot: government-project-manager-issue-tracker.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Timeline View
+   - Click "Timeline View" button
+   - Wait 5 seconds
+   - Screenshot: government-project-manager-timeline-view.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Deliverables
+   - Click "Deliverables" button
+   - Wait 5 seconds
+   - Screenshot: government-project-manager-deliverables.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+================================================================================
+MODE: PROJECT
+================================================================================
+
+
+Persona 4: Service Team Lead - Sarah Mitchell
+URL: http://localhost:3018/demo/service-team-lead
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/service-team-lead
+2. Take initial screenshot: project-service-team-lead-initial.png
+3. Check console for errors
+
+   Quick Action 1: Team Dashboard
+   - Click "Team Dashboard" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-lead-team-dashboard.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Active Tickets
+   - Click "Active Tickets" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-lead-active-tickets.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Performance Metrics
+   - Click "Performance Metrics" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-lead-performance-metrics.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Resource Planning
+   - Click "Resource Planning" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-lead-resource-planning.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Quality Reports
+   - Click "Quality Reports" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-lead-quality-reports.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 5: Service Team Member - Christopher Hayes
+URL: http://localhost:3018/demo/service-team-member
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/service-team-member
+2. Take initial screenshot: project-service-team-member-initial.png
+3. Check console for errors
+
+   Quick Action 1: My Tasks
+   - Click "My Tasks" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-member-my-tasks.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Active Projects
+   - Click "Active Projects" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-member-active-projects.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Time Tracking
+   - Click "Time Tracking" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-member-time-tracking.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Knowledge Base
+   - Click "Knowledge Base" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-member-knowledge-base.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Team Chat
+   - Click "Team Chat" button
+   - Wait 5 seconds
+   - Screenshot: project-service-team-member-team-chat.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 6: Stakeholder Lead - Jordan Taylor
+URL: http://localhost:3018/demo/stakeholder-lead
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/stakeholder-lead
+2. Take initial screenshot: project-stakeholder-lead-initial.png
+3. Check console for errors
+
+   Quick Action 1: Executive Summary
+   - Click "Executive Summary" button
+   - Wait 5 seconds
+   - Screenshot: project-stakeholder-lead-executive-summary.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Budget Overview
+   - Click "Budget Overview" button
+   - Wait 5 seconds
+   - Screenshot: project-stakeholder-lead-budget-overview.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Risk Assessment
+   - Click "Risk Assessment" button
+   - Wait 5 seconds
+   - Screenshot: project-stakeholder-lead-risk-assessment.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Strategic Alignment
+   - Click "Strategic Alignment" button
+   - Wait 5 seconds
+   - Screenshot: project-stakeholder-lead-strategic-alignment.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: ROI Analysis
+   - Click "ROI Analysis" button
+   - Wait 5 seconds
+   - Screenshot: project-stakeholder-lead-roi-analysis.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+================================================================================
+MODE: ATC
+================================================================================
+
+
+Persona 7: ATC Executive - Jennifer Anderson (CEO)
+URL: http://localhost:3018/demo/atc-executive
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/atc-executive
+2. Take initial screenshot: atc-atc-executive-initial.png
+3. Check console for errors
+
+   Quick Action 1: Company Dashboard
+   - Click "Company Dashboard" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-executive-company-dashboard.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Financial Overview
+   - Click "Financial Overview" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-executive-financial-overview.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Strategic Initiatives
+   - Click "Strategic Initiatives" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-executive-strategic-initiatives.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Market Analysis
+   - Click "Market Analysis" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-executive-market-analysis.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Board Reports
+   - Click "Board Reports" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-executive-board-reports.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 8: ATC Manager - David Miller (CS Manager)
+URL: http://localhost:3018/demo/atc-manager
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/atc-manager
+2. Take initial screenshot: atc-atc-manager-initial.png
+3. Check console for errors
+
+   Quick Action 1: Team Performance
+   - Click "Team Performance" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-manager-team-performance.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Customer Health
+   - Click "Customer Health" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-manager-customer-health.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Support Metrics
+   - Click "Support Metrics" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-manager-support-metrics.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Resource Management
+   - Click "Resource Management" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-manager-resource-management.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Escalations
+   - Click "Escalations" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-manager-escalations.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 9: ATC Support - Christopher Hayes (Support Engineer)
+URL: http://localhost:3018/demo/atc-support
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/atc-support
+2. Take initial screenshot: atc-atc-support-initial.png
+3. Check console for errors
+
+   Quick Action 1: My Tickets
+   - Click "My Tickets" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-support-my-tickets.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Customer Queue
+   - Click "Customer Queue" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-support-customer-queue.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Knowledge Base
+   - Click "Knowledge Base" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-support-knowledge-base.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Escalation Status
+   - Click "Escalation Status" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-support-escalation-status.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Performance Stats
+   - Click "Performance Stats" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-support-performance-stats.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+Persona 10: ATC CSM - Jordan Taylor (Customer Success Manager)
+URL: http://localhost:3018/demo/atc-csm
+--------------------------------------------------------------------------------
+
+1. Navigate to: http://localhost:3018/demo/atc-csm
+2. Take initial screenshot: atc-atc-csm-initial.png
+3. Check console for errors
+
+   Quick Action 1: Account Portfolio
+   - Click "Account Portfolio" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-csm-account-portfolio.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 2: Health Scores
+   - Click "Health Scores" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-csm-health-scores.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 3: Renewal Pipeline
+   - Click "Renewal Pipeline" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-csm-renewal-pipeline.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 4: Upsell Opportunities
+   - Click "Upsell Opportunities" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-csm-upsell-opportunities.png
+   - Check console for errors
+   - Click "New" conversation button
+
+   Quick Action 5: Customer Feedback
+   - Click "Customer Feedback" button
+   - Wait 5 seconds
+   - Screenshot: atc-atc-csm-customer-feedback.png
+   - Check console for errors
+   - Click "New" conversation button
+
+
+================================================================================
+END OF TEST INSTRUCTIONS
+================================================================================
+
+NOTE: This is a guide. Execute tests manually with Chrome DevTools MCP.
+Playwright automation would require additional setup and dependencies.

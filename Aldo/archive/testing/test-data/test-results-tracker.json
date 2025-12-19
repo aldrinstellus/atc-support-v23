@@ -1,0 +1,36 @@
+{
+  "testSession": {
+    "date": "2025-11-13",
+    "tester": "Superman + Oracle",
+    "totalScenarios": 48,
+    "completedTests": 2,
+    "passCount": 1,
+    "failCount": 1
+  },
+  "personas": {
+    "atc-executive": {
+      "total": 12,
+      "tested": 2,
+      "results": [
+        {
+          "id": 1,
+          "question": "Show me SLA performance for Q4 2025",
+          "screenshot": "exec-01-sla-performance.png",
+          "consoleErrors": 0,
+          "responseType": "Proper - SLA Widget",
+          "widget": true,
+          "status": "PASS"
+        },
+        {
+          "id": 2,
+          "question": "Which customers are at risk of churning?",
+          "screenshot": "exec-02-churn-risk.png",
+          "consoleErrors": 0,
+          "responseType": "Generic - Not sure message",
+          "widget": false,
+          "status": "FAIL"
+        }
+      ]
+    }
+  }
+}

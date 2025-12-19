@@ -1,0 +1,763 @@
+/** @import must precede all other statements */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Hide Vercel Dev Tools widget - can be removed later when needed */
+[data-vercel-dev-tools],
+#__vercel_dev_tools,
+.vercel-dev-tools,
+body > div[style*="z-index: 2147483647"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/*---break--- */
+@custom-variant dark (&:is(.dark *));
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@layer base {
+  /**
+   * Sana.ai Theme - Dark Mode Default
+   * Extracted from https://sana.ai design system
+   * Color System: Dark mode with neon lime accent (#cdfe00)
+   * Typography: Inter (Sana Sans fallback) with system fallbacks
+   */
+  :root {
+    /* Sana.ai - Dark Theme (Default) */
+    --background: 240 6% 7%;
+    --foreground: 0 0% 91%;
+
+    --card: 240 5% 10%;
+    --card-foreground: 0 0% 91%;
+
+    --popover: 240 5% 10%;
+    --popover-foreground: 0 0% 91%;
+
+    /* Sana Neon Lime - Primary Brand Color */
+    --primary: 72 100% 50%;
+    --primary-foreground: 240 6% 7%;
+
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 0 0% 91%;
+
+    --muted: 240 5% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 240 5% 21%;
+    --accent-foreground: 0 0% 91%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-soft: 142 30% 15%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 240 6% 7%;
+    --warning-soft: 38 60% 15%;
+
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 72 100% 50%;
+
+    /* Sana Brand Colors */
+    --sana-neon: 72 100% 50%;
+    --sana-royal: 220 100% 48%;
+    --sana-fuschia: 320 98% 47%;
+    --sana-midnight: 226 74% 10%;
+
+    /* Chart Colors - Sana Palette (Dark) */
+    --chart-1: 72 100% 50%;
+    --chart-2: 220 100% 55%;
+    --chart-3: 320 98% 55%;
+    --chart-4: 38 92% 60%;
+    --chart-5: 142 76% 45%;
+
+    /* Shadow System */
+    --shadow-2xs: 0 1px 0 hsl(var(--foreground) / 0.04), 0 0 1px hsl(var(--foreground) / 0.04);
+    --shadow-xs: 0 1px 2px hsl(var(--foreground) / 0.06);
+    --shadow-sm: 0 1px 3px hsl(var(--foreground) / 0.08), 0 1px 2px hsl(var(--foreground) / 0.06);
+    --shadow-md: 0 4px 6px hsl(var(--foreground) / 0.08), 0 2px 4px hsl(var(--foreground) / 0.06);
+    --shadow-lg: 0 10px 15px hsl(var(--foreground) / 0.08), 0 4px 6px hsl(var(--foreground) / 0.05);
+    --shadow-xl: 0 20px 25px hsl(var(--foreground) / 0.10), 0 10px 10px hsl(var(--foreground) / 0.04);
+    --shadow-2xl: 0 25px 50px hsl(var(--foreground) / 0.25);
+
+    --radius: 0.5rem;
+  }
+
+  /* Light mode override (optional) */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 200 10% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 200 10% 10%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 200 10% 10%;
+
+    --primary: 72 100% 50%;
+    --primary-foreground: 200 10% 8%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 200 10% 20%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 72 100% 50%;
+    --accent-foreground: 200 10% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-soft: 142 30% 94%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 200 10% 10%;
+    --warning-soft: 38 60% 94%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 72 100% 50%;
+
+    /* Chart Colors - Light Mode */
+    --chart-1: 72 100% 50%;
+    --chart-2: 220 100% 48%;
+    --chart-3: 320 98% 47%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 142 76% 36%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Sana Typography System */
+  h1, .text-h1 {
+    @apply text-[2.125rem] font-medium tracking-tight;
+    line-height: 1.15;
+  }
+
+  h2, .text-h2 {
+    @apply text-[1.5rem] font-medium tracking-tight;
+    line-height: 1.25;
+  }
+
+  h3, .text-h3 {
+    @apply text-[1.25rem] font-medium;
+    line-height: 1.3;
+  }
+
+  .text-body {
+    @apply text-[0.875rem] font-normal;
+    line-height: 1.5;
+  }
+
+  .text-small {
+    @apply text-[0.75rem];
+    line-height: 1.3;
+  }
+
+  .text-label {
+    @apply text-[0.8125rem] font-medium;
+    letter-spacing: 0;
+  }
+
+  /* Monospace font for technical content */
+  .font-mono, code, pre {
+    font-family: 'IBM Plex Mono', 'Monaco', 'Cascadia Code', monospace !important;
+  }
+
+  /* Sana Scrollbar Styling - Hidden by default */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.2);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+
+  /* Hide scrollbar until hover */
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar:hover::-webkit-scrollbar {
+    display: block;
+  }
+
+  /* Sana Gradients */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(72 100% 60%));
+  }
+
+  .gradient-success {
+    background: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 50%));
+  }
+
+  .gradient-warning {
+    background: linear-gradient(135deg, hsl(var(--warning)), hsl(38 92% 60%));
+  }
+
+  .gradient-destructive {
+    background: linear-gradient(135deg, hsl(var(--destructive)), hsl(0 84% 50%));
+  }
+
+  /* Sana Neon Glow Effect */
+  .glow-neon {
+    box-shadow: 0 0 20px hsl(72 100% 50% / 0.3),
+                0 0 40px hsl(72 100% 50% / 0.2),
+                0 0 60px hsl(72 100% 50% / 0.1);
+  }
+
+  .glow-neon-sm {
+    box-shadow: 0 0 10px hsl(72 100% 50% / 0.2),
+                0 0 20px hsl(72 100% 50% / 0.1);
+  }
+
+  /* Animation Classes */
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-right {
+    animation: slideRight 0.2s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Animated Border Tracing */
+  @keyframes pathDashOffset {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animated-gradient-border {
+    position: relative;
+    padding: 3px;
+    border-radius: 1rem;
+    background: hsl(var(--background));
+  }
+
+  .border-path-animated {
+    animation: pathDashOffset 8s linear infinite;
+  }
+
+  /* Card Hover Effects - Sana Style */
+  .card-hover {
+    @apply transition-all duration-150;
+  }
+
+  .card-hover:hover {
+    background: hsl(var(--secondary));
+  }
+
+  /* Focus States - Sana Style */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Sana Icon Sizing */
+  .icon-sm {
+    @apply w-4 h-4;
+  }
+
+  .icon-md {
+    @apply w-5 h-5;
+  }
+
+  .icon-lg {
+    @apply w-6 h-6;
+  }
+
+  .icon-xl {
+    @apply w-8 h-8;
+  }
+
+  /* Accessible Text Utilities */
+  .text-subtle {
+    @apply text-sm;
+    color: hsl(var(--foreground) / 0.6);
+  }
+
+  .text-subtle-xs {
+    @apply text-xs;
+    color: hsl(var(--foreground) / 0.6);
+  }
+
+  .text-muted-sana {
+    color: hsl(var(--foreground) / 0.4);
+  }
+
+  /* Sana Glass Effects - Dark Mode */
+  .liquid-glass {
+    background: rgba(19, 19, 20, 0.85);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(232, 232, 232, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card {
+    background: rgba(19, 19, 20, 0.6);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(232, 232, 232, 0.05);
+  }
+
+  /* Light mode glass */
+  :root .liquid-glass {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  :root .glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* Sana Sidebar Styling */
+  .sana-sidebar {
+    width: 280px;
+    background: hsl(var(--background));
+    border-right: 1px solid hsl(var(--border));
+  }
+
+  .sana-sidebar-collapsed {
+    width: 64px;
+  }
+
+  /* Sana Input Styling */
+  .sana-input {
+    height: 44px;
+    background: hsl(var(--secondary));
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    transition: all 150ms ease;
+  }
+
+  .sana-input:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.1);
+  }
+
+  /* Sana Button Styles */
+  .sana-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 36px;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 150ms ease;
+  }
+
+  .sana-btn-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .sana-btn-primary:hover {
+    background: hsl(72 100% 45%);
+  }
+
+  .sana-btn-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+
+  .sana-btn-secondary:hover {
+    background: hsl(var(--accent));
+  }
+
+  .sana-btn-ghost {
+    background: transparent;
+    color: hsl(var(--foreground));
+  }
+
+  .sana-btn-ghost:hover {
+    background: hsl(var(--secondary));
+  }
+}
+
+/*---break--- */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --font-sans: Inter, sans-serif;
+  --font-mono: IBM Plex Mono, monospace;
+  --font-serif: Georgia, serif;
+  --radius: 0.5rem;
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+  --tracking-normal: 0;
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-md: var(--shadow-md);
+  --shadow: var(--shadow);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-2xs: var(--shadow-2xs);
+  --spacing: var(--spacing);
+  --letter-spacing: var(--letter-spacing);
+  --shadow-offset-y: var(--shadow-offset-y);
+  --shadow-offset-x: var(--shadow-offset-x);
+  --shadow-spread: var(--shadow-spread);
+  --shadow-blur: var(--shadow-blur);
+  --shadow-opacity: var(--shadow-opacity);
+  --color-shadow-color: var(--shadow-color);
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+}
+
+/*---break--- */
+
+/* Sana.ai Design Tokens - Native CSS Variables */
+/* DARK MODE DEFAULT - Sana.ai is a dark-first theme */
+:root {
+  --radius: 0.5rem;
+  /* #131314 background - Sana.ai dark */
+  --background: 240 6% 7%;
+  /* #e8e8e8 foreground */
+  --foreground: 0 0% 91%;
+  /* #1e1f20 card */
+  --card: 220 4% 12%;
+  --card-foreground: 0 0% 91%;
+  /* #1e1f20 popover */
+  --popover: 220 4% 12%;
+  --popover-foreground: 0 0% 91%;
+  /* #cdfe00 primary - Sana Neon Lime */
+  --primary: 72 100% 50%;
+  /* Dark text on neon */
+  --primary-foreground: 240 6% 7%;
+  /* #242628 secondary hover */
+  --secondary: 216 5% 15%;
+  --secondary-foreground: 0 0% 91%;
+  /* Same as secondary */
+  --muted: 216 5% 15%;
+  /* rgba(232, 232, 232, 0.6) = #8b8b8b solid */
+  --muted-foreground: 0 0% 55%;
+  /* #353536 tertiary */
+  --accent: 240 2% 21%;
+  --accent-foreground: 0 0% 91%;
+  /* #ff3b30 alert */
+  --destructive: 4 100% 59%;
+  /* #34c759 success */
+  --success: 142 69% 50%;
+  /* Border - subtle dark */
+  --border: 220 4% 18%;
+  --input: 220 4% 18%;
+  /* #cdfe00 ring */
+  --ring: 72 100% 50%;
+  /* Charts - Sana brand palette */
+  --chart-1: 72 100% 50%;
+  --chart-2: 220 100% 48%;
+  --chart-3: 320 98% 47%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 142 69% 50%;
+  /* Sidebar - same as card */
+  --sidebar: 220 4% 12%;
+  --sidebar-foreground: 0 0% 91%;
+  --sidebar-primary: 72 100% 50%;
+  --sidebar-primary-foreground: 240 6% 7%;
+  --sidebar-accent: 240 2% 21%;
+  --sidebar-accent-foreground: 0 0% 91%;
+  --sidebar-border: 220 4% 18%;
+  --sidebar-ring: 72 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: IBM Plex Mono, monospace;
+  --shadow-color: hsl(0 0% 0%);
+  --shadow-opacity: 0.3;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 2px;
+  --letter-spacing: 0em;
+  --spacing: 0.25rem;
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.15);
+  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.18);
+  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.24), 0px 1px 2px -1px hsl(0 0% 0% / 0.24);
+  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.24), 0px 1px 2px -1px hsl(0 0% 0% / 0.24);
+  --shadow-md: 0px 4px 6px -1px hsl(0 0% 0% / 0.24), 0px 2px 4px -2px hsl(0 0% 0% / 0.24);
+  --shadow-lg: 0px 10px 15px -3px hsl(0 0% 0% / 0.24), 0px 4px 6px -4px hsl(0 0% 0% / 0.24);
+  --shadow-xl: 0px 20px 25px -5px hsl(0 0% 0% / 0.3), 0px 8px 10px -6px hsl(0 0% 0% / 0.3);
+  --shadow-2xl: 0px 25px 50px -12px hsl(0 0% 0% / 0.5);
+  --tracking-normal: 0em;
+}
+
+/*---break--- */
+
+/* Light mode override - optional */
+.light {
+  /* Light mode - white background */
+  --background: 0 0% 100%;
+  --foreground: 200 10% 10%;
+  --card: 0 0% 98%;
+  --card-foreground: 200 10% 10%;
+  --popover: 0 0% 98%;
+  --popover-foreground: 200 10% 10%;
+  --primary: 72 100% 50%;
+  --primary-foreground: 200 10% 8%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 200 10% 20%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 72 100% 50%;
+  --accent-foreground: 200 10% 8%;
+  --destructive: 0 84% 60%;
+  --success: 142 76% 36%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 72 100% 50%;
+  --chart-1: 72 100% 50%;
+  --chart-2: 220 100% 48%;
+  --chart-3: 320 98% 47%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 142 76% 36%;
+  --sidebar: 0 0% 98%;
+  --sidebar-foreground: 200 10% 10%;
+  --sidebar-primary: 72 100% 50%;
+  --sidebar-primary-foreground: 200 10% 8%;
+  --sidebar-accent: 0 0% 94%;
+  --sidebar-accent-foreground: 200 10% 10%;
+  --sidebar-border: 0 0% 90%;
+  --sidebar-ring: 72 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --shadow-color: hsl(0 0% 0%);
+  --shadow-opacity: 0.1;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 2px;
+  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.06);
+  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.08);
+  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.08);
+  --shadow-md: 0px 4px 6px -1px hsl(0 0% 0% / 0.08), 0px 2px 4px -2px hsl(0 0% 0% / 0.08);
+  --shadow-lg: 0px 10px 15px -3px hsl(0 0% 0% / 0.08), 0px 4px 6px -4px hsl(0 0% 0% / 0.08);
+  --shadow-xl: 0px 20px 25px -5px hsl(0 0% 0% / 0.1), 0px 8px 10px -6px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0px 25px 50px -12px hsl(0 0% 0% / 0.25);
+}
+
+/*---break--- */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Light mode contrast fix: Use darker green for text-primary to meet WCAG AA (4.5:1) */
+  /* Lime green (#CDFE00) has only 1.4:1 contrast on white - needs darker variant for text */
+  .light .text-primary,
+  .light [class*="text-primary"] {
+    color: hsl(85 100% 25%) !important; /* Dark green #3D7A00 - 5.5:1 contrast ratio */
+  }
+
+  /* Smooth color transitions for theming */
+  *:where(
+    .bg-primary,
+    .text-primary,
+    .border-primary,
+    .hover\:bg-primary:hover,
+    .hover\:text-primary:hover,
+    .hover\:border-primary:hover,
+    .ring-primary,
+    [class*="bg-primary"],
+    [class*="text-primary"],
+    [class*="border-primary"]
+  ) {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+/*---break--- */
+
+/* Hide Next.js error overlays in development */
+#__next-build-watcher,
+nextjs-portal,
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+[id^="__next-error"],
+[data-nextjs-build-indicator],
+[data-nextjs-static-indicator],
+[data-nextjs-dev-indicator],
+body > nextjs-portal,
+[class*="nextjs-portal"],
+[class*="__next-build"],
+button[class*="nextjs"],
+div[style*="position: fixed"][style*="bottom"][style*="left"] > button,
+body > div:last-child button[aria-label],
+body > div[style*="z-index"]:last-of-type {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

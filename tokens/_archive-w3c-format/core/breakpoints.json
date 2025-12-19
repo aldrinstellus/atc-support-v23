@@ -1,0 +1,27 @@
+{
+  "sm": {
+    "$value": "640px",
+    "$type": "dimension",
+    "$description": "Mobile breakpoint"
+  },
+  "md": {
+    "$value": "768px",
+    "$type": "dimension",
+    "$description": "Tablet breakpoint"
+  },
+  "lg": {
+    "$value": "1024px",
+    "$type": "dimension",
+    "$description": "Desktop breakpoint"
+  },
+  "xl": {
+    "$value": "1280px",
+    "$type": "dimension",
+    "$description": "Wide desktop breakpoint"
+  },
+  "2xl": {
+    "$value": "1536px",
+    "$type": "dimension",
+    "$description": "Ultra wide breakpoint"
+  }
+}

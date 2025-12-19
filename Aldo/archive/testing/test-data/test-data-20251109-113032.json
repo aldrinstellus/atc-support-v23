@@ -1,0 +1,416 @@
+{
+  "C-Level Executive": {
+    "url": "http://localhost:3016/demo/c-level",
+    "totalQueries": 19,
+    "queries": [
+      {
+        "query": "Show me all my current tickets from Zoho Desk",
+        "type": "Quick Action",
+        "expectedWidget": "Ticket List Widget"
+      },
+      {
+        "query": "Show me SLA performance dashboard for this quarter",
+        "type": "Quick Action",
+        "expectedWidget": "SLA Performance Chart"
+      },
+      {
+        "query": "Which customers are at highest risk of churning?",
+        "type": "Quick Action",
+        "expectedWidget": "Customer Risk List"
+      },
+      {
+        "query": "Generate comprehensive executive dashboard summary",
+        "type": "Quick Action",
+        "expectedWidget": "Executive Summary Widget"
+      },
+      {
+        "query": "Prepare metrics for board meeting presentation",
+        "type": "Quick Action",
+        "expectedWidget": "Board Metrics Dashboard"
+      },
+      {
+        "query": "Show me status of top 20 high-value customer accounts",
+        "type": "Quick Action",
+        "expectedWidget": "Customer List Widget"
+      },
+      {
+        "query": "Show me progress on strategic initiatives and OKRs",
+        "type": "Quick Action",
+        "expectedWidget": "Strategic Dashboard"
+      },
+      {
+        "query": "Show me SLA performance for Q4 2025",
+        "type": "Demo Scenario",
+        "expectedWidget": "SLA Performance Chart"
+      },
+      {
+        "query": "Which customers are at risk of churning?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Risk List"
+      },
+      {
+        "query": "Executive dashboard summary for board meeting",
+        "type": "Demo Scenario",
+        "expectedWidget": "Executive Summary Widget"
+      },
+      {
+        "query": "Revenue impact analysis from support tickets",
+        "type": "Demo Scenario",
+        "expectedWidget": "Revenue Impact Dashboard"
+      },
+      {
+        "query": "Show me customer satisfaction scores",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Satisfaction Widget"
+      },
+      {
+        "query": "Top 10 accounts by revenue with health scores",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Health Dashboard"
+      },
+      {
+        "query": "Escalation trends over last 3 months",
+        "type": "Demo Scenario",
+        "expectedWidget": "Escalation Trend Chart"
+      },
+      {
+        "query": "Customer retention metrics and forecasts",
+        "type": "Demo Scenario",
+        "expectedWidget": "Retention Metrics Widget"
+      },
+      {
+        "query": "Show me resource allocation efficiency",
+        "type": "Demo Scenario",
+        "expectedWidget": "Resource Allocation Chart"
+      },
+      {
+        "query": "Team capacity vs demand projections",
+        "type": "Demo Scenario",
+        "expectedWidget": "Capacity Planning Widget"
+      },
+      {
+        "query": "Integration ROI analysis",
+        "type": "Demo Scenario",
+        "expectedWidget": "ROI Analysis Dashboard"
+      },
+      {
+        "query": "Competitive positioning from customer feedback",
+        "type": "Demo Scenario",
+        "expectedWidget": "Competitive Analysis Widget"
+      }
+    ]
+  },
+  "CS Manager": {
+    "url": "http://localhost:3016/demo/cs-manager",
+    "totalQueries": 21,
+    "queries": [
+      {
+        "query": "Show me all my current tickets from Zoho Desk",
+        "type": "Quick Action",
+        "expectedWidget": "Ticket List Widget"
+      },
+      {
+        "query": "Show me all high-priority customers needing attention",
+        "type": "Quick Action",
+        "expectedWidget": "Customer Risk List"
+      },
+      {
+        "query": "Show me agent performance metrics for this week",
+        "type": "Quick Action",
+        "expectedWidget": "Agent Performance Stats"
+      },
+      {
+        "query": "Who is my most slacking agent this week?",
+        "type": "Quick Action",
+        "expectedWidget": "Agent Performance Comparison"
+      },
+      {
+        "query": "Who is my top performing agent this week?",
+        "type": "Quick Action",
+        "expectedWidget": "Agent Performance Stats"
+      },
+      {
+        "query": "Show me agent workload distribution and recommend reassignments",
+        "type": "Quick Action",
+        "expectedWidget": "Team Workload Dashboard"
+      },
+      {
+        "query": "Show me tickets at risk of SLA breach",
+        "type": "Quick Action",
+        "expectedWidget": "SLA Alert List"
+      },
+      {
+        "query": "Show me team capacity and forecast for next week",
+        "type": "Quick Action",
+        "expectedWidget": "Capacity Forecast Chart"
+      },
+      {
+        "query": "Show me all escalated tickets requiring manager attention",
+        "type": "Quick Action",
+        "expectedWidget": "Escalated Ticket List"
+      },
+      {
+        "query": "Show me agent performance for this week",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Performance Stats"
+      },
+      {
+        "query": "Who is my most slacking agent?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Performance Comparison"
+      },
+      {
+        "query": "Who is my top performing agent?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Performance Stats"
+      },
+      {
+        "query": "Compare agent metrics: resolution time vs customer satisfaction",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Comparison Chart"
+      },
+      {
+        "query": "Which customers need immediate attention?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Priority Customer List"
+      },
+      {
+        "query": "Show me all high-priority tickets by customer",
+        "type": "Demo Scenario",
+        "expectedWidget": "Ticket List Widget (filtered)"
+      },
+      {
+        "query": "Customers with multiple open tickets",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Ticket Count Widget"
+      },
+      {
+        "query": "Accounts with declining satisfaction scores",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Satisfaction Trend"
+      },
+      {
+        "query": "Recommend ticket reassignments for workload balance",
+        "type": "Demo Scenario",
+        "expectedWidget": "Workload Rebalancing Widget"
+      },
+      {
+        "query": "Show me SLA breach risks for next 24 hours",
+        "type": "Demo Scenario",
+        "expectedWidget": "SLA Risk Dashboard"
+      },
+      {
+        "query": "Team capacity planning for Q1 2026",
+        "type": "Demo Scenario",
+        "expectedWidget": "Capacity Planning Widget"
+      },
+      {
+        "query": "Escalation trends and root cause analysis",
+        "type": "Demo Scenario",
+        "expectedWidget": "Escalation Analysis Dashboard"
+      }
+    ]
+  },
+  "Support Agent": {
+    "url": "http://localhost:3016/demo/support-agent",
+    "totalQueries": 19,
+    "queries": [
+      {
+        "query": "Show me all my current tickets from Zoho Desk",
+        "type": "Quick Action",
+        "expectedWidget": "Ticket List Widget"
+      },
+      {
+        "query": "Show me all my currently open support tickets",
+        "type": "Quick Action",
+        "expectedWidget": "Ticket List Widget (filtered)"
+      },
+      {
+        "query": "How many tickets did AI resolve for me today?",
+        "type": "Quick Action",
+        "expectedWidget": "AI Resolution Stats Widget"
+      },
+      {
+        "query": "Show me tickets escalated to me that need my attention",
+        "type": "Quick Action",
+        "expectedWidget": "Escalated Ticket List"
+      },
+      {
+        "query": "Show me my scheduled customer meetings for today",
+        "type": "Quick Action",
+        "expectedWidget": "Meeting Scheduler"
+      },
+      {
+        "query": "Show me status of Jira issues linked to my tickets",
+        "type": "Quick Action",
+        "expectedWidget": "Jira Integration Status"
+      },
+      {
+        "query": "Show me my urgent tickets and critical alerts",
+        "type": "Quick Action",
+        "expectedWidget": "Priority Alert List"
+      },
+      {
+        "query": "Show me my tickets received in last 24 hours",
+        "type": "Demo Scenario",
+        "expectedWidget": "Ticket List Widget (filtered)"
+      },
+      {
+        "query": "How many tickets did AI resolve for me?",
+        "type": "Demo Scenario",
+        "expectedWidget": "AI Resolution Stats"
+      },
+      {
+        "query": "What are my urgent tickets right now?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Priority Ticket List"
+      },
+      {
+        "query": "My ticket resolution rate this week",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Performance Stats"
+      },
+      {
+        "query": "Prep notes for my 2 PM customer call",
+        "type": "Demo Scenario",
+        "expectedWidget": "Call Prep Notes Widget"
+      },
+      {
+        "query": "Show me conversation history with TechCorp Solutions",
+        "type": "Demo Scenario",
+        "expectedWidget": "Customer Conversation History"
+      },
+      {
+        "query": "Draft response for ticket DESK-1002",
+        "type": "Demo Scenario",
+        "expectedWidget": "Response Composer Widget"
+      },
+      {
+        "query": "Schedule follow-up meeting with CloudNine Technologies",
+        "type": "Demo Scenario",
+        "expectedWidget": "Meeting Scheduler"
+      },
+      {
+        "query": "Link ticket DESK-1002 to Jira issue PROJ-302",
+        "type": "Demo Scenario",
+        "expectedWidget": "Jira Link Confirmation"
+      },
+      {
+        "query": "Show me tickets I can close today",
+        "type": "Demo Scenario",
+        "expectedWidget": "Closeable Tickets List"
+      },
+      {
+        "query": "AI-suggested canned responses for common issues",
+        "type": "Demo Scenario",
+        "expectedWidget": "Canned Response Library"
+      },
+      {
+        "query": "My performance metrics vs team average",
+        "type": "Demo Scenario",
+        "expectedWidget": "Agent Performance Comparison"
+      }
+    ]
+  },
+  "CSM": {
+    "url": "http://localhost:3016/demo/csm",
+    "totalQueries": 19,
+    "queries": [
+      {
+        "query": "Show me health scores for my assigned clients",
+        "type": "Quick Action",
+        "expectedWidget": "Client Health Dashboard"
+      },
+      {
+        "query": "Show product adoption metrics and feature usage across clients",
+        "type": "Quick Action",
+        "expectedWidget": "Adoption Metrics Widget"
+      },
+      {
+        "query": "Show upcoming renewals and contract status",
+        "type": "Quick Action",
+        "expectedWidget": "Renewal Pipeline Widget"
+      },
+      {
+        "query": "Show recent client feedback and NPS scores",
+        "type": "Quick Action",
+        "expectedWidget": "NPS Dashboard"
+      },
+      {
+        "query": "Identify upsell and cross-sell opportunities",
+        "type": "Quick Action",
+        "expectedWidget": "Upsell Opportunities List"
+      },
+      {
+        "query": "Show product roadmap and upcoming features",
+        "type": "Quick Action",
+        "expectedWidget": "Roadmap Timeline"
+      },
+      {
+        "query": "Schedule and manage client business reviews",
+        "type": "Quick Action",
+        "expectedWidget": "Meeting Scheduler"
+      },
+      {
+        "query": "Show me health scores for all my assigned clients",
+        "type": "Demo Scenario",
+        "expectedWidget": "Client Health Dashboard"
+      },
+      {
+        "query": "Which clients have declining product adoption?",
+        "type": "Demo Scenario",
+        "expectedWidget": "Adoption Trend Widget"
+      },
+      {
+        "query": "Show me clients at risk of churn this quarter",
+        "type": "Demo Scenario",
+        "expectedWidget": "Churn Risk Dashboard"
+      },
+      {
+        "query": "Compare client engagement trends month-over-month",
+        "type": "Demo Scenario",
+        "expectedWidget": "Engagement Trend Chart"
+      },
+      {
+        "query": "Show upcoming renewals in next 90 days",
+        "type": "Demo Scenario",
+        "expectedWidget": "Renewal Pipeline Widget"
+      },
+      {
+        "query": "Identify expansion opportunities across my portfolio",
+        "type": "Demo Scenario",
+        "expectedWidget": "Expansion Opportunity List"
+      },
+      {
+        "query": "Show clients ready for premium tier upgrade",
+        "type": "Demo Scenario",
+        "expectedWidget": "Upgrade Opportunity Widget"
+      },
+      {
+        "query": "Analyze revenue retention and expansion metrics",
+        "type": "Demo Scenario",
+        "expectedWidget": "Revenue Metrics Dashboard"
+      },
+      {
+        "query": "Show recent NPS survey results by client",
+        "type": "Demo Scenario",
+        "expectedWidget": "NPS Dashboard"
+      },
+      {
+        "query": "Which clients need business review meetings?",
+        "type": "Demo Scenario",
+        "expectedWidget": "QBR Schedule Widget"
+      },
+      {
+        "query": "Show product roadmap items most requested by clients",
+        "type": "Demo Scenario",
+        "expectedWidget": "Feature Request Ranking"
+      },
+      {
+        "query": "Schedule quarterly business reviews for top accounts",
+        "type": "Demo Scenario",
+        "expectedWidget": "Meeting Scheduler"
+      }
+    ]
+  }
+}

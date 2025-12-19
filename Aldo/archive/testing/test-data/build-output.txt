@@ -1,0 +1,62 @@
+
+> enterprise-ai-support-v15-presentation@15.1.0 build
+> next build --turbopack
+
+   ▲ Next.js 15.5.4 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · serverActions
+
+   Creating an optimized production build ...
+ ✓ Finished writing to disk in 218ms
+ ✓ Compiled successfully in 2.9s
+   Linting and checking validity of types ...
+
+./src/components/presentation/PresentationController.tsx
+388:69  Warning: The ref value 'narrationTimerRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'narrationTimerRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+389:61  Warning: The ref value 'slideTimerRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'slideTimerRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+392:5  Warning: Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps').
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/10) ...
+   Generating static pages (2/10) 
+   Generating static pages (4/10) 
+   Generating static pages (7/10) 
+ ✓ Generating static pages (10/10)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                         Size  First Load JS
+┌ ○ /                              382 B         115 kB
+├ ○ /_not-found                      0 B         115 kB
+├ ƒ /api/chat                        0 B            0 B
+├ ƒ /api/health                      0 B            0 B
+├ ƒ /api/tickets                     0 B            0 B
+├ ƒ /api/tickets/[ticketNumber]      0 B            0 B
+├ ƒ /api/webhook                     0 B            0 B
+├ ƒ /api/zoho/process-ticket         0 B            0 B
+├ ƒ /api/zoho/sync                   0 B            0 B
+├ ƒ /api/zoho/test                   0 B            0 B
+├ ƒ /api/zoho/webhook                0 B            0 B
+├ ƒ /dashboard/[persona]          168 kB         321 kB
+├ ƒ /demo/c-level                2.33 kB         336 kB
+├ ƒ /demo/cs-manager             2.33 kB         336 kB
+├ ○ /demo/csm                    2.39 kB         336 kB
+├ ƒ /demo/support-agent          2.33 kB         336 kB
+├ ○ /demo/tickets                2.06 kB         171 kB
+├ ○ /presentation/gov-cio        9.79 kB         162 kB
+└ ○ /workflows                   7.26 kB         122 kB
++ First Load JS shared by all     133 kB
+  ├ chunks/150316a471952cee.js   59.2 kB
+  ├ chunks/75a3f12660976f11.js     13 kB
+  └ chunks/ad485e1ef0aa584e.js   17.2 kB
+  ├ chunks/ed6033f3f57dd04d.css  17.6 kB
+  └ other shared chunks (total)  25.6 kB
+
+
+ƒ Middleware                     39.4 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

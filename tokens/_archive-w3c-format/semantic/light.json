@@ -1,0 +1,142 @@
+{
+  "background": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$description": "Page background - hsl(0 0% 100%)"
+  },
+  "foreground": {
+    "$value": "#161a1c",
+    "$type": "color",
+    "$description": "Primary text - hsl(200 10% 10%)"
+  },
+  "card": {
+    "$value": "#f9f9f9",
+    "$type": "color",
+    "$description": "Card background - hsl(0 0% 98%)"
+  },
+  "cardForeground": {
+    "$value": "#161a1c",
+    "$type": "color",
+    "$description": "Card text - hsl(200 10% 10%)"
+  },
+  "popover": {
+    "$value": "#f9f9f9",
+    "$type": "color",
+    "$description": "Popover background - hsl(0 0% 98%)"
+  },
+  "popoverForeground": {
+    "$value": "#161a1c",
+    "$type": "color",
+    "$description": "Popover text - hsl(200 10% 10%)"
+  },
+  "primary": {
+    "$value": "#cbff00",
+    "$type": "color",
+    "$description": "Primary action - hsl(72 100% 50%)"
+  },
+  "primaryForeground": {
+    "$value": "#121516",
+    "$type": "color",
+    "$description": "Text on primary - hsl(200 10% 8%)"
+  },
+  "secondary": {
+    "$value": "#f4f4f4",
+    "$type": "color",
+    "$description": "Secondary background - hsl(0 0% 96%)"
+  },
+  "secondaryForeground": {
+    "$value": "#2d3438",
+    "$type": "color",
+    "$description": "Secondary text - hsl(200 10% 20%)"
+  },
+  "muted": {
+    "$value": "#f4f4f4",
+    "$type": "color",
+    "$description": "Muted background - hsl(0 0% 96%)"
+  },
+  "mutedForeground": {
+    "$value": "#727272",
+    "$type": "color",
+    "$description": "Muted text - hsl(0 0% 45%)"
+  },
+  "accent": {
+    "$value": "#cbff00",
+    "$type": "color",
+    "$description": "Accent/tertiary - hsl(72 100% 50%)"
+  },
+  "accentForeground": {
+    "$value": "#121516",
+    "$type": "color",
+    "$description": "Accent text - hsl(200 10% 8%)"
+  },
+  "destructive": {
+    "$value": "#ee4343",
+    "$type": "color",
+    "$description": "Destructive/error - hsl(0 84% 60%)"
+  },
+  "destructiveForeground": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$description": "Destructive text - hsl(0 0% 100%)"
+  },
+  "success": {
+    "$value": "#16a149",
+    "$type": "color",
+    "$description": "Success state - hsl(142 76% 36%)"
+  },
+  "successForeground": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$description": "Success text"
+  },
+  "warning": {
+    "$value": "#f49e0a",
+    "$type": "color",
+    "$description": "Warning state - hsl(38 92% 50%)"
+  },
+  "warningForeground": {
+    "$value": "#161a1c",
+    "$type": "color",
+    "$description": "Warning text - hsl(200 10% 10%)"
+  },
+  "border": {
+    "$value": "#e5e5e5",
+    "$type": "color",
+    "$description": "Border color - hsl(0 0% 90%)"
+  },
+  "input": {
+    "$value": "#e5e5e5",
+    "$type": "color",
+    "$description": "Input border - hsl(0 0% 90%)"
+  },
+  "ring": {
+    "$value": "#cbff00",
+    "$type": "color",
+    "$description": "Focus ring - hsl(72 100% 50%)"
+  },
+  "sidebar": {
+    "$value": "#f9f9f9",
+    "$type": "color",
+    "$description": "Sidebar background - hsl(0 0% 98%)"
+  },
+  "sidebarForeground": {
+    "$value": "#161a1c",
+    "$type": "color",
+    "$description": "Sidebar text - hsl(200 10% 10%)"
+  },
+  "sidebarPrimary": {
+    "$value": "#cbff00",
+    "$type": "color",
+    "$description": "Sidebar primary - hsl(72 100% 50%)"
+  },
+  "sidebarAccent": {
+    "$value": "#efefef",
+    "$type": "color",
+    "$description": "Sidebar accent - hsl(0 0% 94%)"
+  },
+  "sidebarBorder": {
+    "$value": "#e5e5e5",
+    "$type": "color",
+    "$description": "Sidebar border - hsl(0 0% 90%)"
+  }
+}

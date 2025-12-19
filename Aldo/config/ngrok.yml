@@ -1,0 +1,19 @@
+# ngrok Configuration for Enterprise AI Support V14
+# This file configures ngrok to use a consistent subdomain (requires paid plan)
+# or you can use the free version which will generate a new URL each time
+
+version: "2"
+authtoken: ${NGROK_AUTHTOKEN}
+
+tunnels:
+  enterprise-ai-support:
+    proto: http
+    addr: 3014
+    # Uncomment the line below if you have a paid ngrok plan for consistent URLs
+    # subdomain: enterprise-ai-support-v14
+
+    # Request/Response inspection
+    inspect: true
+
+    # Metadata for identification
+    metadata: "Enterprise AI Support V14 Development"

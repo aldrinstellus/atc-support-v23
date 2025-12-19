@@ -1,0 +1,754 @@
+// Enterprise AI Support V17 - Mode Switcher Database Schema
+// Supports 6 personas across Government and Project modes
+// 15+ models for contracts, sprints, deployments, and real-time metrics
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// CORE USER MANAGEMENT
+// ============================================================================
+
+// User model with 6 persona types (Government + Project modes)
+model User {
+  id         String    @id @default(cuid())
+  email      String    @unique
+  name       String
+  role       UserRole  @default(SERVICE_TEAM_MEMBER)
+  department String?
+  avatar     String?
+  isActive   Boolean   @default(true)
+  lastLogin  DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  // Relations
+  accounts               Account[]
+  sessions               Session[]
+  assignedTasks          Task[]                  @relation("TaskAssignee")
+  assignedDeliverables   Deliverable[]           @relation("DeliverableAssignee")
+  activities             Activity[]
+  agentPerformance       AgentPerformance?
+  stakeholderEngagements StakeholderEngagement[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+// 6 persona types for Government and Project modes
+enum UserRole {
+  // Government Mode Personas (3)
+  COR // Contracting Officer Representative
+  PROGRAM_MANAGER // Program Manager
+  STAKEHOLDER_LEAD // Stakeholder Lead
+
+  // Project Mode Personas (3)
+  PROJECT_MANAGER // Project Manager
+  SERVICE_TEAM_LEAD // Service Team Lead
+  SERVICE_TEAM_MEMBER // Service Team Member
+}
+
+// NextAuth.js Required Models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================================================
+// GOVERNMENT MODE MODELS (Contracts, Vendors, Deliverables)
+// ============================================================================
+
+// Contract management for government programs
+model Contract {
+  id               String         @id @default(cuid())
+  contractId       String         @unique // e.g., "CTR-2024-001"
+  title            String
+  description      String?        @db.Text
+  vendorId         String
+  contractValue    Float // Total contract value in USD
+  status           ContractStatus @default(ACTIVE)
+  startDate        DateTime
+  endDate          DateTime
+  performanceScore Float          @default(0) // 0-100
+  complianceScore  Float          @default(0) // 0-100
+  riskLevel        RiskLevel      @default(LOW)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  vendor         Vendor          @relation(fields: [vendorId], references: [id])
+  deliverables   Deliverable[]
+  changeRequests ChangeRequest[]
+
+  @@index([contractId])
+  @@index([vendorId])
+  @@index([status])
+  @@map("contracts")
+}
+
+enum ContractStatus {
+  ACTIVE
+  ON_HOLD
+  AT_RISK
+  COMPLETED
+  CANCELLED
+}
+
+enum RiskLevel {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+// Vendor management and performance tracking
+model Vendor {
+  id               String    @id @default(cuid())
+  vendorId         String    @unique // e.g., "VND-001"
+  name             String
+  contactName      String?
+  contactEmail     String?
+  contactPhone     String?
+  performanceScore Float     @default(0) // 0-100
+  slaCompliance    Float     @default(0) // 0-100 percentage
+  onTimeDelivery   Float     @default(0) // 0-100 percentage
+  qualityScore     Float     @default(0) // 0-100
+  totalContracts   Int       @default(0)
+  activeContracts  Int       @default(0)
+  riskLevel        RiskLevel @default(LOW)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  contracts Contract[]
+
+  @@index([vendorId])
+  @@map("vendors")
+}
+
+// Deliverable tracking with quality metrics
+model Deliverable {
+  id            String            @id @default(cuid())
+  deliverableId String            @unique // e.g., "DEL-2024-001"
+  title         String
+  description   String?           @db.Text
+  contractId    String
+  assigneeId    String?
+  dueDate       DateTime
+  completedDate DateTime?
+  status        DeliverableStatus @default(NOT_STARTED)
+  qualityScore  Float? // 0-100
+  reviewStatus  ReviewStatus      @default(PENDING)
+  priority      Priority          @default(MEDIUM)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  contract     Contract      @relation(fields: [contractId], references: [id])
+  assignee     User?         @relation("DeliverableAssignee", fields: [assigneeId], references: [id])
+  requirements Requirement[]
+
+  @@index([deliverableId])
+  @@index([contractId])
+  @@index([status])
+  @@map("deliverables")
+}
+
+enum DeliverableStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  UNDER_REVIEW
+  COMPLETED
+  REJECTED
+  ON_HOLD
+}
+
+enum ReviewStatus {
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  NEEDS_REVISION
+}
+
+enum Priority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+// Requirements tracking and test coverage
+model Requirement {
+  id                 String            @id @default(cuid())
+  reqId              String            @unique // e.g., "REQ-2024-001"
+  title              String
+  description        String            @db.Text
+  deliverableId      String?
+  stakeholder        String // Person or department who requested
+  priority           Priority          @default(MEDIUM)
+  status             RequirementStatus @default(DRAFT)
+  testCoverage       Float             @default(0) // 0-100 percentage
+  acceptanceCriteria String?           @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  deliverable Deliverable? @relation(fields: [deliverableId], references: [id])
+
+  @@index([reqId])
+  @@index([status])
+  @@map("requirements")
+}
+
+enum RequirementStatus {
+  DRAFT
+  APPROVED
+  IN_DEVELOPMENT
+  IN_TESTING
+  COMPLETED
+  REJECTED
+}
+
+// Change request management
+model ChangeRequest {
+  id                 String              @id @default(cuid())
+  requestId          String              @unique // e.g., "CR-2024-001"
+  title              String
+  description        String              @db.Text
+  contractId         String
+  requestedBy        String // User or stakeholder name
+  impact             ImpactLevel         @default(MEDIUM)
+  status             ChangeRequestStatus @default(PENDING)
+  approvals          Json? // Array of approval records
+  implementationDate DateTime?
+  estimatedCost      Float? // Additional cost if any
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  contract Contract @relation(fields: [contractId], references: [id])
+
+  @@index([requestId])
+  @@index([status])
+  @@map("change_requests")
+}
+
+enum ChangeRequestStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  IMPLEMENTED
+  CANCELLED
+}
+
+enum ImpactLevel {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  MINIMAL
+}
+
+// ============================================================================
+// PROJECT MODE MODELS (Sprints, Tasks, Code Quality, Deployments)
+// ============================================================================
+
+// Sprint management for agile teams
+model Sprint {
+  id             String       @id @default(cuid())
+  sprintId       String       @unique // e.g., "SPRINT-2024-Q1-01"
+  name           String // e.g., "Sprint 24"
+  team           String // Team name
+  startDate      DateTime
+  endDate        DateTime
+  velocity       Int          @default(0) // Story points completed
+  plannedPoints  Int          @default(0) // Story points planned
+  goalCompletion Float        @default(0) // 0-100 percentage
+  blockers       Int          @default(0) // Number of blockers
+  status         SprintStatus @default(PLANNING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  tasks Task[]
+
+  @@index([sprintId])
+  @@index([team])
+  @@index([status])
+  @@map("sprints")
+}
+
+enum SprintStatus {
+  PLANNING
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+// Task tracking with story points
+model Task {
+  id             String     @id @default(cuid())
+  taskId         String     @unique // e.g., "TASK-2024-001"
+  title          String
+  description    String?    @db.Text
+  sprintId       String?
+  assigneeId     String?
+  status         TaskStatus @default(TODO)
+  priority       Priority   @default(MEDIUM)
+  storyPoints    Int? // Agile story points
+  estimatedHours Float?
+  actualHours    Float?
+  tags           String[] // Array of tags
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+
+  // Relations
+  sprint   Sprint? @relation(fields: [sprintId], references: [id])
+  assignee User?   @relation("TaskAssignee", fields: [assigneeId], references: [id])
+
+  @@index([taskId])
+  @@index([sprintId])
+  @@index([status])
+  @@map("tasks")
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  BLOCKED
+  DONE
+  CANCELLED
+}
+
+// Code quality metrics per repository
+model CodeQuality {
+  id              String   @id @default(cuid())
+  repo            String   @unique // Repository name
+  coverage        Float    @default(0) // 0-100 percentage
+  vulnerabilities Int      @default(0) // Number of security vulnerabilities
+  codeSmells      Int      @default(0) // Number of code smells
+  technicalDebt   Float    @default(0) // Tech debt in days
+  maintainability String   @default("A") // A, B, C, D, E rating
+  reliability     String   @default("A") // A, B, C, D, E rating
+  security        String   @default("A") // A, B, C, D, E rating
+  duplications    Float    @default(0) // 0-100 percentage
+  linesOfCode     Int      @default(0)
+  lastAnalysis    DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([repo])
+  @@map("code_quality")
+}
+
+// Deployment tracking and monitoring
+model Deployment {
+  id             String           @id @default(cuid())
+  deploymentId   String           @unique // e.g., "DEP-2024-001"
+  environment    Environment
+  status         DeploymentStatus @default(PENDING)
+  version        String // Semantic version (e.g., "1.2.3")
+  commitHash     String? // Git commit SHA
+  deployedBy     String // User who triggered deployment
+  startTime      DateTime         @default(now())
+  endTime        DateTime?
+  duration       Int? // Duration in seconds
+  rollback       Boolean          @default(false)
+  rollbackReason String?          @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([deploymentId])
+  @@index([environment])
+  @@index([status])
+  @@map("deployments")
+}
+
+enum Environment {
+  DEVELOPMENT
+  STAGING
+  PRODUCTION
+}
+
+enum DeploymentStatus {
+  PENDING
+  IN_PROGRESS
+  SUCCESS
+  FAILED
+  ROLLED_BACK
+}
+
+// ============================================================================
+// SHARED MODELS (Used in both Government and Project modes)
+// ============================================================================
+
+// Knowledge base articles
+model KnowledgeArticle {
+  id          String   @id @default(cuid())
+  articleId   String   @unique // e.g., "KB-2024-001"
+  title       String
+  content     String   @db.Text
+  category    String
+  tags        String[] // Array of tags
+  views       Int      @default(0)
+  helpful     Int      @default(0) // Thumbs up count
+  notHelpful  Int      @default(0) // Thumbs down count
+  author      String
+  isPublished Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([articleId])
+  @@index([category])
+  @@map("knowledge_articles")
+}
+
+// Support ticket metrics
+model TicketMetric {
+  id                   String @id @default(cuid())
+  ticketId             String @unique
+  resolutionTime       Int // Minutes to resolve
+  firstResponseTime    Int // Minutes to first response
+  customerSatisfaction Float? // 1-5 rating
+  escalations          Int    @default(0)
+  reopened             Int    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ticketId])
+  @@map("ticket_metrics")
+}
+
+// Agent performance tracking (for Service Team Members)
+model AgentPerformance {
+  id                String @id @default(cuid())
+  userId            String @unique
+  agentId           String @unique // e.g., "AGENT-001"
+  ticketsResolved   Int    @default(0)
+  avgResolutionTime Float  @default(0) // In hours
+  customerSatScore  Float  @default(0) // 0-5 rating
+  activeTickets     Int    @default(0)
+  slaComplianceRate Float  @default(0) // 0-100 percentage
+  firstContactRes   Float  @default(0) // 0-100 percentage
+  performanceRating String @default("GOOD") // EXCELLENT, GOOD, NEEDS_IMPROVEMENT
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([agentId])
+  @@map("agent_performance")
+}
+
+// Customer risk assessment
+model CustomerRisk {
+  id                String    @id @default(cuid())
+  customerId        String    @unique
+  customerName      String
+  riskScore         Int // 0-100
+  issuesCount       Int       @default(0)
+  openIssues        Int       @default(0)
+  avgResolutionDays Float     @default(0)
+  lastInteraction   DateTime?
+  accountValue      Float? // Annual contract value
+  churnRisk         Float     @default(0) // 0-100 percentage
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([customerId])
+  @@map("customer_risks")
+}
+
+// Stakeholder engagement tracking
+model StakeholderEngagement {
+  id                String    @id @default(cuid())
+  stakeholderId     String // User ID
+  stakeholderName   String
+  role              String // Role or title
+  department        String?
+  engagementScore   Float     @default(0) // 0-100
+  meetingsAttended  Int       @default(0)
+  feedbackProvided  Int       @default(0)
+  lastContact       DateTime?
+  communicationPref String? // email, phone, teams, slack
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [stakeholderId], references: [id])
+
+  @@index([stakeholderId])
+  @@map("stakeholder_engagements")
+}
+
+// Activity logging for audit trail
+model Activity {
+  id          String       @id @default(cuid())
+  type        ActivityType
+  description String
+  metadata    Json? // Additional context as JSON
+  userId      String
+  entityType  String? // contract, deliverable, task, etc.
+  entityId    String? // ID of related entity
+
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([type])
+  @@index([entityType, entityId])
+  @@map("activities")
+}
+
+enum ActivityType {
+  // Government Mode Activities
+  CONTRACT_CREATED
+  CONTRACT_UPDATED
+  DELIVERABLE_SUBMITTED
+  DELIVERABLE_APPROVED
+  REQUIREMENT_ADDED
+  CHANGE_REQUEST_SUBMITTED
+  VENDOR_PERFORMANCE_UPDATED
+
+  // Project Mode Activities
+  SPRINT_STARTED
+  SPRINT_COMPLETED
+  TASK_CREATED
+  TASK_COMPLETED
+  DEPLOYMENT_STARTED
+  DEPLOYMENT_COMPLETED
+  CODE_QUALITY_UPDATED
+
+  // Shared Activities
+  USER_LOGIN
+  REPORT_GENERATED
+  SETTINGS_CHANGED
+
+  // V20 ITSS Draft Activities
+  DRAFT_GENERATED
+  DRAFT_REVIEWED
+  DRAFT_APPROVED
+  DRAFT_REJECTED
+  DRAFT_SENT
+  DRAFT_REGENERATED
+}
+
+// ============================================================================
+// V20 ITSS - AI DRAFT SYSTEM MODELS
+// Human-in-the-Loop AI Response Generation
+// ============================================================================
+
+// AI-generated response draft for support tickets
+model Draft {
+  id              String       @id @default(cuid())
+  draftId         String       @unique // e.g., "DRAFT-2025-001"
+  ticketId        String       // Reference to external ticket (Zoho, etc.)
+  ticketSubject   String       // Cached ticket subject
+  customerName    String?      // Customer who submitted ticket
+  customerEmail   String?      // Customer email
+  originalContent String       @db.Text // Original customer message
+  draftContent    String       @db.Text // AI-generated draft response
+  finalContent    String?      @db.Text // Approved/edited content (what was sent)
+  status          DraftStatus  @default(PENDING_REVIEW)
+
+  // AI Classification & Metadata
+  confidenceScore Float        @default(0) // 0-100 confidence in response
+  category        String?      // password_reset, access_request, bug_report, question
+  priority        Priority     @default(MEDIUM)
+  sentiment       String?      // frustrated, neutral, satisfied
+  complexity      String?      // simple, moderate, complex
+  tone            String?      // formal, friendly, technical
+
+  // Workflow Timestamps
+  generatedAt     DateTime     @default(now())
+  reviewedAt      DateTime?
+  approvedAt      DateTime?
+  sentAt          DateTime?
+  rejectedAt      DateTime?
+
+  // Agent Assignment
+  assignedAgentId String?
+  reviewedById    String?
+  approvedById    String?
+  rejectionReason String?      @db.Text
+
+  // Knowledge Base References
+  kbArticlesUsed  String[]     // Array of KB article IDs used for context
+  sourcesUsed     Json?        // Detailed source references
+
+  // AI Model Info
+  modelVersion    String?      // e.g., "claude-3-5-sonnet-20241022"
+  promptTokens    Int?         // Tokens used in prompt
+  completionTokens Int?        // Tokens in response
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  // Relations
+  versions        DraftVersion[]
+
+  @@index([draftId])
+  @@index([ticketId])
+  @@index([status])
+  @@index([assignedAgentId])
+  @@index([confidenceScore])
+  @@map("drafts")
+}
+
+// Draft status workflow
+enum DraftStatus {
+  GENERATING       // AI is actively generating
+  PENDING_REVIEW   // Awaiting agent review
+  IN_REVIEW        // Agent is currently reviewing
+  APPROVED         // Approved, pending send
+  REJECTED         // Rejected by agent
+  SENT             // Successfully sent to customer
+  FAILED           // Send failed
+  ESCALATED        // Escalated to supervisor
+}
+
+// Version history for draft edits
+model DraftVersion {
+  id              String   @id @default(cuid())
+  draftId         String
+  version         Int      @default(1)
+  content         String   @db.Text
+  editedBy        String?  // User ID or "AI" for regenerations
+  editedByName    String?  // Display name
+  editType        EditType @default(AI_GENERATED)
+  editSummary     String?  // Brief description of changes
+  editDistance    Int?     // Characters changed from previous version
+  changePercent   Float?   // Percentage of content changed
+
+  // Metadata for this version
+  confidenceScore Float?   // Confidence at this version
+  tone            String?  // Tone used for this version
+
+  createdAt       DateTime @default(now())
+
+  // Relations
+  draft           Draft    @relation(fields: [draftId], references: [id], onDelete: Cascade)
+
+  @@unique([draftId, version])
+  @@index([draftId])
+  @@map("draft_versions")
+}
+
+// Types of edits to track
+enum EditType {
+  AI_GENERATED    // Original AI generation
+  AGENT_EDIT      // Manual edit by agent
+  REGENERATE      // AI regenerated with new prompt
+  TONE_CHANGE     // Regenerated with different tone
+  AUTO_SAVE       // Auto-saved draft
+}
+
+// Agent session for SSO (extends NextAuth sessions)
+model AgentSession {
+  id              String   @id @default(cuid())
+  agentId         String   // Links to User.id
+  sessionToken    String   @unique
+  entraIdToken    String?  @db.Text // Microsoft Entra ID token
+  refreshToken    String?  @db.Text // Refresh token
+  expiresAt       DateTime
+  lastActiveAt    DateTime @default(now())
+  ipAddress       String?
+  userAgent       String?
+
+  createdAt       DateTime @default(now())
+
+  @@index([agentId])
+  @@index([expiresAt])
+  @@map("agent_sessions")
+}
+
+// Draft analytics aggregation (for Phase 2 learning loop)
+model DraftAnalytics {
+  id                  String   @id @default(cuid())
+  date                DateTime @default(now()) @db.Date
+  category            String?  // Ticket category
+
+  // Volume metrics
+  draftsGenerated     Int      @default(0)
+  draftsApproved      Int      @default(0)
+  draftsRejected      Int      @default(0)
+  draftsSent          Int      @default(0)
+
+  // Quality metrics
+  avgConfidenceScore  Float    @default(0)
+  avgEditDistance     Float    @default(0) // Average edits before approval
+  acceptanceRate      Float    @default(0) // Approved / (Approved + Rejected)
+
+  // Time metrics
+  avgReviewTime       Float    @default(0) // Minutes from generation to decision
+  avgTimeToSend       Float    @default(0) // Minutes from generation to send
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@unique([date, category])
+  @@index([date])
+  @@map("draft_analytics")
+}

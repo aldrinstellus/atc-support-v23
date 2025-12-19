@@ -1,0 +1,142 @@
+{
+  "background": {
+    "value": "#ffffff",
+    "type": "color",
+    "description": "Page background - hsl(0 0% 100%)"
+  },
+  "foreground": {
+    "value": "#161a1c",
+    "type": "color",
+    "description": "Primary text - hsl(200 10% 10%)"
+  },
+  "card": {
+    "value": "#fafafa",
+    "type": "color",
+    "description": "Card background - hsl(0 0% 98%)"
+  },
+  "card-foreground": {
+    "value": "#161a1c",
+    "type": "color",
+    "description": "Card text - hsl(200 10% 10%)"
+  },
+  "popover": {
+    "value": "#fafafa",
+    "type": "color",
+    "description": "Popover background - hsl(0 0% 98%)"
+  },
+  "popover-foreground": {
+    "value": "#161a1c",
+    "type": "color",
+    "description": "Popover text - hsl(200 10% 10%)"
+  },
+  "primary": {
+    "value": "#cbff00",
+    "type": "color",
+    "description": "Primary action - hsl(72 100% 50%)"
+  },
+  "primary-foreground": {
+    "value": "#121516",
+    "type": "color",
+    "description": "Text on primary - hsl(200 10% 8%)"
+  },
+  "secondary": {
+    "value": "#f5f5f5",
+    "type": "color",
+    "description": "Secondary background - hsl(0 0% 96%)"
+  },
+  "secondary-foreground": {
+    "value": "#2d3438",
+    "type": "color",
+    "description": "Secondary text - hsl(200 10% 20%)"
+  },
+  "muted": {
+    "value": "#f5f5f5",
+    "type": "color",
+    "description": "Muted background - hsl(0 0% 96%)"
+  },
+  "muted-foreground": {
+    "value": "#737373",
+    "type": "color",
+    "description": "Muted text - hsl(0 0% 45%)"
+  },
+  "accent": {
+    "value": "#cbff00",
+    "type": "color",
+    "description": "Accent color - hsl(72 100% 50%)"
+  },
+  "accent-foreground": {
+    "value": "#121516",
+    "type": "color",
+    "description": "Accent text - hsl(200 10% 8%)"
+  },
+  "destructive": {
+    "value": "#ee4343",
+    "type": "color",
+    "description": "Destructive/error - hsl(0 84% 60%)"
+  },
+  "destructive-foreground": {
+    "value": "#ffffff",
+    "type": "color",
+    "description": "Destructive text - hsl(0 0% 100%)"
+  },
+  "success": {
+    "value": "#16a149",
+    "type": "color",
+    "description": "Success state - hsl(142 76% 36%)"
+  },
+  "border": {
+    "value": "#e5e5e5",
+    "type": "color",
+    "description": "Border color - hsl(0 0% 90%)"
+  },
+  "input": {
+    "value": "#e5e5e5",
+    "type": "color",
+    "description": "Input border - hsl(0 0% 90%)"
+  },
+  "ring": {
+    "value": "#cbff00",
+    "type": "color",
+    "description": "Focus ring - hsl(72 100% 50%)"
+  },
+  "sidebar": {
+    "value": "#fafafa",
+    "type": "color",
+    "description": "Sidebar background - hsl(0 0% 98%)"
+  },
+  "sidebar-foreground": {
+    "value": "#161a1c",
+    "type": "color",
+    "description": "Sidebar text - hsl(200 10% 10%)"
+  },
+  "sidebar-primary": {
+    "value": "#cbff00",
+    "type": "color",
+    "description": "Sidebar primary - hsl(72 100% 50%)"
+  },
+  "sidebar-primary-foreground": {
+    "value": "#121516",
+    "type": "color",
+    "description": "Sidebar primary text - hsl(200 10% 8%)"
+  },
+  "sidebar-accent": {
+    "value": "#f0f0f0",
+    "type": "color",
+    "description": "Sidebar accent - hsl(0 0% 94%)"
+  },
+  "sidebar-accent-foreground": {
+    "value": "#161a1c",
+    "type": "color",
+    "description": "Sidebar accent text - hsl(200 10% 10%)"
+  },
+  "sidebar-border": {
+    "value": "#e5e5e5",
+    "type": "color",
+    "description": "Sidebar border - hsl(0 0% 90%)"
+  },
+  "sidebar-ring": {
+    "value": "#cbff00",
+    "type": "color",
+    "description": "Sidebar focus ring - hsl(72 100% 50%)"
+  }
+}

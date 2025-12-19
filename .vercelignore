@@ -1,0 +1,17 @@
+# Experimental demo pages - not production ready
+src/app/demo-drawer/
+src/app/demo-float/
+src/app/demo-palette/
+src/app/demo-smart/
+src/app/demo-split/
+src/app/demo-toggle/
+src/app/concept2/
+
+# Test files
+tests/
+test-results/
+
+# Documentation
+docs/
+*.md
+!README.md

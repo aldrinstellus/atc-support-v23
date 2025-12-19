@@ -1,0 +1,99 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    ENTERPRISE AI SUPPORT V14                                  ║
+║                        WEBHOOK ENDPOINTS                                      ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+Last Updated: 2025-10-13 11:05 UTC
+Status: ✅ BOTH ACTIVE AND TESTED
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📍 LOCAL DEVELOPMENT (ngrok)
+
+URL:
+https://iona-khakilike-violet.ngrok-free.dev/api/zoho/webhook
+
+Purpose: Local testing and development
+Status: ✅ Active
+Server: localhost:3014 via ngrok tunnel
+Note: URL changes on restart (free plan)
+
+Quick Start:
+  npm run dev:webhooks
+  npm run dev:webhook-url
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 PRODUCTION (Vercel)
+
+URL:
+https://enterprise-ai-support-v14.vercel.app/api/zoho/webhook
+
+Purpose: Live production email processing
+Status: ✅ Ready
+Server: Vercel edge network
+Note: Permanent URL - never changes
+
+Deploy:
+  vercel --prod
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 TEST COMMANDS
+
+Local:
+  curl https://iona-khakilike-violet.ngrok-free.dev/api/zoho/webhook
+
+Production:
+  curl https://enterprise-ai-support-v14.vercel.app/api/zoho/webhook
+
+Both should return:
+  {"status":"active","message":"Zoho Desk webhook endpoint is ready"}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📧 TEST EMAIL
+
+Send to: support@atcaisupport.zohodesk.com
+Expected: Auto-reply within 3-5 seconds
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚙️ ZOHO DESK WEBHOOK CONFIGURATION
+
+Dashboard: https://desk.zoho.com/support/atcaisupport/ShowHomePage.do#Setup/Webhooks/list
+
+Settings:
+  • Events: Ticket_Add + Ticket_Thread_Add
+  • Channel: Email only
+  • Method: POST
+  • Content-Type: application/json
+
+Choose ONE URL:
+  1. Use LOCAL for: Testing/Development
+  2. Use PRODUCTION for: Live operations
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VERIFICATION
+
+Local Dev:
+  [✓] Next.js running (PID 35125)
+  [✓] ngrok running (PID 38907)
+  [✓] Webhook responding HTTP 200
+  [✓] Last tested: 2025-10-13 11:05 UTC
+
+Production:
+  [✓] Vercel deployed
+  [✓] Webhook responding HTTP 200
+  [✓] Last tested: 2025-10-13 11:05 UTC
+  [✓] Last deploy: 2025-10-13 06:53 UTC
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For detailed documentation, see:
+  • DUAL-WEBHOOK-CONFIGURATION.md
+  • PRODUCTION-DEPLOYMENT.md
+  • WEBHOOK-SETUP-SUMMARY.md
+
+╚═══════════════════════════════════════════════════════════════════════════════╝

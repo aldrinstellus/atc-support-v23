@@ -1,0 +1,1353 @@
+{
+  "config": {
+    "configFile": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/playwright.config.ts",
+    "rootDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "tests/reports/playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/reports/test-results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium-c-level",
+        "name": "chromium-c-level",
+        "testDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/personas/c-level.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium-cs-manager",
+        "name": "chromium-cs-manager",
+        "testDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/personas/cs-manager.spec.ts"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium-support-agent",
+        "name": "chromium-support-agent",
+        "testDir": "/Users/admin/Documents/claudecode/Projects/enterprise-ai-support-v4/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/personas/support-agent.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 5,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "personas/c-level.spec.ts",
+      "file": "personas/c-level.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C-Level Executive Persona Tests",
+          "file": "personas/c-level.spec.ts",
+          "line": 17,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Q1: Executive Summary Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4995,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me executive summary\"\n"
+                        },
+                        {
+                          "text": "✅ Executive Summary Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:53.025Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-6bf0ea7c8645a4d38be2",
+              "file": "personas/c-level.spec.ts",
+              "line": 39,
+              "column": 7
+            },
+            {
+              "title": "Q2: Customer Risk Profile Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5946,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Tell me more about Acme Corp\"\n"
+                        },
+                        {
+                          "text": "✅ Customer Risk Profile Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:01.645Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-3b60c83cdf2690773d4b",
+              "file": "personas/c-level.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "Q3: SLA Performance Chart Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4968,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me the SLA performance breakdown\"\n"
+                        },
+                        {
+                          "text": "✅ SLA Performance Chart Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:53.025Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-78fbdc9dafd157459b38",
+              "file": "personas/c-level.spec.ts",
+              "line": 70,
+              "column": 7
+            },
+            {
+              "title": "Q4: Customer Risk List Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5940,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me high-risk customers\"\n"
+                        },
+                        {
+                          "text": "✅ Customer Risk List Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:01.445Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-bd1ffbf484659d35ed74",
+              "file": "personas/c-level.spec.ts",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "Q5: Ticket Detail Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5992,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me ticket TICK-001\"\n"
+                        },
+                        {
+                          "text": "✅ Ticket Detail Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:53.025Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-27644f72faa1c271ae70",
+              "file": "personas/c-level.spec.ts",
+              "line": 98,
+              "column": 7
+            },
+            {
+              "title": "Q6-Q8: Multi-Step - Schedule Executive Call (3 steps)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 20931,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Multi-Step Conversation: Schedule Executive Call\n"
+                        },
+                        {
+                          "text": "\n📝 Step 1: \"Schedule executive call\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 1\n"
+                        },
+                        {
+                          "text": "✅ Response contains expected text\n"
+                        },
+                        {
+                          "text": "\n📝 Step 2: \"yes\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 2\n"
+                        },
+                        {
+                          "text": "✅ Widget \"meeting-scheduler\" rendered\n"
+                        },
+                        {
+                          "text": "\n📝 Step 3: \"book tomorrow at 1pm\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 3\n"
+                        },
+                        {
+                          "text": "✅ Widget \"meeting-confirmation\" rendered\n"
+                        },
+                        {
+                          "text": "✅ Multi-Step Conversation Flow completed successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:02.646Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-668abb931dcdf298c1ac",
+              "file": "personas/c-level.spec.ts",
+              "line": 112,
+              "column": 7
+            },
+            {
+              "title": "Validate No Console Errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-c-level",
+                  "projectName": "chromium-c-level",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ No console errors detected\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:53.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cb52835bff352e0d8495-c11aae1b3c5d3bc7fa70",
+              "file": "personas/c-level.spec.ts",
+              "line": 147,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "personas/cs-manager.spec.ts",
+      "file": "personas/cs-manager.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "CS Manager Persona Tests",
+          "file": "personas/cs-manager.spec.ts",
+          "line": 18,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Q1: Team Workload Dashboard Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4966,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me my team's status\"\n"
+                        },
+                        {
+                          "text": "✅ Team Workload Dashboard Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:53.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-d3d028eb9fd79bc8c485",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "Q2: Ticket List Widget with Personalized Title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4971,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me Sarah's tickets\"\n"
+                        },
+                        {
+                          "text": "✅ Ticket List Widget with personalized title rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:01.226Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-ee809a5000d96f315214",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 54,
+              "column": 7
+            },
+            {
+              "title": "Q3: Multi-Step - Schedule 1-on-1 with Marcus (3 steps)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 16711,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Multi-Step: Schedule 1-on-1 with Marcus\n"
+                        },
+                        {
+                          "text": "\n📝 Step 1: \"Schedule a 1-on-1 coaching session with Marcus\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 1\n"
+                        },
+                        {
+                          "text": "✅ Response contains expected text\n"
+                        },
+                        {
+                          "text": "\n📝 Step 2: \"yes\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 2\n"
+                        },
+                        {
+                          "text": "✅ Widget \"meeting-scheduler\" rendered\n"
+                        },
+                        {
+                          "text": "\n📝 Step 3: \"book tomorrow at 1pm\"\n"
+                        },
+                        {
+                          "text": "✅ AI responded to step 3\n"
+                        },
+                        {
+                          "text": "✅ Widget \"meeting-confirmation\" rendered\n"
+                        },
+                        {
+                          "text": "✅ Multi-Step 1-on-1 Scheduling completed successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:17:57.144Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-409de30ec475a9a9f4b6",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 68,
+              "column": 7
+            },
+            {
+              "title": "Q4: Message Composer Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4947,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Draft a message to Acme Corp about the outage\"\n"
+                        },
+                        {
+                          "text": "✅ Message Composer Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:16.446Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-59d19d22115e48e2a9a4",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 100,
+              "column": 7
+            },
+            {
+              "title": "Q5: Interactive Button - Send Message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 8855,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Send Message\n"
+                        },
+                        {
+                          "text": "✅ Send Message button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:06.289Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-09cf7167f15cbda9bed2",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 114,
+              "column": 7
+            },
+            {
+              "title": "Q6: Interactive Button - Save as Draft",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4027,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Save as Draft\n"
+                        },
+                        {
+                          "text": "✅ Save as Draft button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:17.699Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-b20d267d65c0f3caa489",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 136,
+              "column": 7
+            },
+            {
+              "title": "Q7: Interactive Button - Save as Template",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9917,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Save as Template\n"
+                        },
+                        {
+                          "text": "✅ Save as Template button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:07.862Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-db42cd331485cf8b1640",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 152,
+              "column": 7
+            },
+            {
+              "title": "Validate No Console Errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-cs-manager",
+                  "projectName": "chromium-cs-manager",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ No console errors detected\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:20.355Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5c33390326065a88853d-1b9194271882bed5d17b",
+              "file": "personas/cs-manager.spec.ts",
+              "line": 168,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "personas/support-agent.spec.ts",
+      "file": "personas/support-agent.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Support Agent Persona Tests",
+          "file": "personas/support-agent.spec.ts",
+          "line": 18,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Q1: Agent Dashboard Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5969,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Good morning, what's on my plate today?\"\n"
+                        },
+                        {
+                          "text": "✅ Agent Dashboard Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:08.019Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-d5da3beb088e293ca541",
+              "file": "personas/support-agent.spec.ts",
+              "line": 40,
+              "column": 7
+            },
+            {
+              "title": "Q2: Ticket Detail Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4938,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me ticket TICK-001\"\n"
+                        },
+                        {
+                          "text": "✅ Ticket Detail Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:16.664Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-4ec7d3eca28ced29c0c6",
+              "file": "personas/support-agent.spec.ts",
+              "line": 54,
+              "column": 7
+            },
+            {
+              "title": "Q3: Call Prep Notes Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4959,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Help me prepare for the call with Acme Corp\"\n"
+                        },
+                        {
+                          "text": "✅ Call Prep Notes Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:21.609Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-84d414956c18c3362d2b",
+              "file": "personas/support-agent.spec.ts",
+              "line": 68,
+              "column": 7
+            },
+            {
+              "title": "Q4: Response Composer Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5974,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Draft a response for this angry customer\"\n"
+                        },
+                        {
+                          "text": "✅ Response Composer Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:20.787Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-0ae728bd4e74f956a488",
+              "file": "personas/support-agent.spec.ts",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "Q5: Interactive Button - Send Response",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4923,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Send Response\n"
+                        },
+                        {
+                          "text": "✅ Send Response button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:29.417Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-63fd128e25d4534eb596",
+              "file": "personas/support-agent.spec.ts",
+              "line": 96,
+              "column": 7
+            },
+            {
+              "title": "Q6: Interactive Button - Edit and Customize",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3984,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Edit and Customize\n"
+                        },
+                        {
+                          "text": "✅ Edit and Customize button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:34.347Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-07dbcb97e259880e4203",
+              "file": "personas/support-agent.spec.ts",
+              "line": 117,
+              "column": 7
+            },
+            {
+              "title": "Q7: Interactive Button - Regenerate Response",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10888,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing Interactive Button: Regenerate Response\n"
+                        },
+                        {
+                          "text": "✅ Regenerate Response button action validated\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:21.830Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-2564877d7c1a9b9e2d4f",
+              "file": "personas/support-agent.spec.ts",
+              "line": 133,
+              "column": 7
+            },
+            {
+              "title": "Q8: Ticket List Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4958,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me my tickets\"\n"
+                        },
+                        {
+                          "text": "✅ Ticket List Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:35.332Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-c8cf381e6920673743fe",
+              "file": "personas/support-agent.spec.ts",
+              "line": 149,
+              "column": 7
+            },
+            {
+              "title": "Q9: Similar Tickets Analysis Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5981,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Find similar tickets I've resolved\"\n"
+                        },
+                        {
+                          "text": "✅ Similar Tickets Analysis Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:40.296Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-69420419687d12d25215",
+              "file": "personas/support-agent.spec.ts",
+              "line": 163,
+              "column": 7
+            },
+            {
+              "title": "Q10: Agent Performance Stats Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4967,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Show me my performance stats\"\n"
+                        },
+                        {
+                          "text": "✅ Agent Performance Stats Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:22.202Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-dafe76c54eb41619345a",
+              "file": "personas/support-agent.spec.ts",
+              "line": 177,
+              "column": 7
+            },
+            {
+              "title": "Q11: Knowledge Base Search Widget",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 5954,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"How do I troubleshoot authentication issues?\"\n"
+                        },
+                        {
+                          "text": "✅ Knowledge Base Search Widget rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:29.813Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-c45b368cdcf2fd07810f",
+              "file": "personas/support-agent.spec.ts",
+              "line": 191,
+              "column": 7
+            },
+            {
+              "title": "Q12: Knowledge Article Widget with Dynamic ID",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4987,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎯 Testing: \"Open KB-107\" (dynamic ID extraction)\n"
+                        },
+                        {
+                          "text": "✅ Knowledge Article Widget with dynamic ID rendered successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:35.773Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-f09e90039eb9cac466ef",
+              "file": "personas/support-agent.spec.ts",
+              "line": 205,
+              "column": 7
+            },
+            {
+              "title": "Validate No Console Errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium-support-agent",
+                  "projectName": "chromium-support-agent",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ No console errors detected\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-04T03:18:24.029Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0d9c7784d1ef474ed69d-e5135e75c4a3e9a5d201",
+              "file": "personas/support-agent.spec.ts",
+              "line": 219,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-04T03:17:52.600Z",
+    "duration": 53796.48,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

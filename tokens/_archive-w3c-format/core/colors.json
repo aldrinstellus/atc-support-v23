@@ -1,0 +1,51 @@
+{
+  "sana": {
+    "neon": {
+      "$value": "#cbff00",
+      "$type": "color",
+      "$description": "Sana Neon Lime - Primary Brand - hsl(72 100% 50%)"
+    },
+    "royal": {
+      "$value": "#0051f4",
+      "$type": "color",
+      "$description": "Sana Royal Blue - hsl(220 100% 48%)"
+    },
+    "fuschia": {
+      "$value": "#ed029f",
+      "$type": "color",
+      "$description": "Sana Fuschia Pink - hsl(320 98% 47%)"
+    },
+    "midnight": {
+      "$value": "#060f2c",
+      "$type": "color",
+      "$description": "Sana Midnight Blue - hsl(226 74% 10%)"
+    }
+  },
+  "chart": {
+    "1": {
+      "$value": "#cbff00",
+      "$type": "color",
+      "$description": "Chart Color 1 - Neon Lime - hsl(72 100% 50%)"
+    },
+    "2": {
+      "$value": "#0051f4",
+      "$type": "color",
+      "$description": "Chart Color 2 - Blue - hsl(220 100% 48%)"
+    },
+    "3": {
+      "$value": "#ed029f",
+      "$type": "color",
+      "$description": "Chart Color 3 - Pink - hsl(320 98% 47%)"
+    },
+    "4": {
+      "$value": "#f49e0a",
+      "$type": "color",
+      "$description": "Chart Color 4 - Orange - hsl(38 92% 50%)"
+    },
+    "5": {
+      "$value": "#27d768",
+      "$type": "color",
+      "$description": "Chart Color 5 - Green - hsl(142 69% 50%)"
+    }
+  }
+}
