@@ -25,119 +25,197 @@ body > div[style*="z-index: 2147483647"] {
 
 @layer base {
   /**
-   * Sana.ai Theme - Dark Mode Default
-   * Extracted from https://sana.ai design system
-   * Color System: Dark mode with neon lime accent (#cdfe00)
-   * Typography: Inter (Sana Sans fallback) with system fallbacks
+   * IT Support System Theme - V23
+   * Extracted from Figma Design Variables
+   * Color System: Gray palette with Indigo primary
+   * Typography: Inter with system fallbacks
+   * Radius: Large, more rounded
    */
+
+  /* ==========================================================================
+     DARK MODE (Default) - IT Support System
+     ========================================================================== */
   :root {
-    /* Sana.ai - Dark Theme (Default) */
-    --background: 240 6% 7%;
-    --foreground: 0 0% 91%;
+    /* Background & Foreground */
+    --background: 224 71% 4%;           /* gray-950 #030712 */
+    --foreground: 210 40% 98%;          /* gray-50 #f9fafb */
 
-    --card: 240 5% 10%;
-    --card-foreground: 0 0% 91%;
+    /* Card */
+    --card: 220 27% 7%;                 /* gray-900 #111827 */
+    --card-foreground: 210 40% 98%;     /* gray-50 */
 
-    --popover: 240 5% 10%;
-    --popover-foreground: 0 0% 91%;
+    /* Popover */
+    --popover: 217 19% 17%;             /* gray-800 #1f2937 */
+    --popover-foreground: 210 40% 98%;  /* gray-50 */
 
-    /* Sana Neon Lime - Primary Brand Color */
-    --primary: 72 100% 50%;
-    --primary-foreground: 240 6% 7%;
+    /* Primary - Indigo */
+    --primary: 239 84% 67%;             /* indigo-500 #6366f1 */
+    --primary-foreground: 0 0% 100%;    /* white */
 
-    --secondary: 240 5% 12%;
-    --secondary-foreground: 0 0% 91%;
+    /* Secondary */
+    --secondary: 217 19% 17%;           /* gray-800 #1f2937 */
+    --secondary-foreground: 220 27% 7%; /* gray-900 */
 
-    --muted: 240 5% 12%;
-    --muted-foreground: 0 0% 55%;
+    /* Muted */
+    --muted: 217 19% 17%;               /* gray-800 */
+    --muted-foreground: 220 9% 46%;     /* gray-500 #6b7280 */
 
-    --accent: 240 5% 21%;
-    --accent-foreground: 0 0% 91%;
+    /* Accent */
+    --accent: 216 12% 27%;              /* gray-700 #374151 */
+    --accent-foreground: 210 40% 98%;   /* gray-50 */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Destructive */
+    --destructive: 0 84% 60%;           /* red-500 #ef4444 */
+    --destructive-foreground: 0 86% 97%; /* red-50 */
 
-    --success: 142 76% 45%;
+    /* Success */
+    --success: 142 76% 36%;             /* green-600 */
     --success-foreground: 0 0% 100%;
     --success-soft: 142 30% 15%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 240 6% 7%;
+    /* Warning */
+    --warning: 38 92% 50%;              /* amber-500 */
+    --warning-foreground: 224 71% 4%;
     --warning-soft: 38 60% 15%;
 
-    --border: 240 5% 18%;
-    --input: 240 5% 18%;
-    --ring: 72 100% 50%;
+    /* Border & Input */
+    --border: 217 19% 17%;              /* gray-800 with alpha */
+    --input: 217 19% 17%;
+    --ring: 220 9% 46%;                 /* gray-500 */
 
-    /* Sana Brand Colors */
-    --sana-neon: 72 100% 50%;
-    --sana-royal: 220 100% 48%;
-    --sana-fuschia: 320 98% 47%;
-    --sana-midnight: 226 74% 10%;
+    /* Chart Colors */
+    --chart-1: 221 83% 53%;             /* blue-700 #1d4ed8 */
+    --chart-2: 160 84% 39%;             /* emerald-500 #10b981 */
+    --chart-3: 160 84% 39%;             /* emerald-500 */
+    --chart-4: 271 81% 56%;             /* purple-500 #a855f7 */
+    --chart-5: 43 96% 56%;              /* amber-400 #fbbf24 */
 
-    /* Chart Colors - Sana Palette (Dark) */
-    --chart-1: 72 100% 50%;
-    --chart-2: 220 100% 55%;
-    --chart-3: 320 98% 55%;
-    --chart-4: 38 92% 60%;
-    --chart-5: 142 76% 45%;
+    /* Sidebar */
+    --sidebar: 224 71% 4%;              /* gray-950 */
+    --sidebar-foreground: 224 71% 4%;   /* gray-950 */
+    --sidebar-primary: 216 12% 27%;     /* gray-700 */
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217 19% 17%;      /* gray-800 */
+    --sidebar-accent-foreground: 220 27% 7%;
+    --sidebar-border: 214 32% 91%;      /* zinc-200 */
+    --sidebar-ring: 220 13% 46%;        /* gray-400 */
 
-    /* Shadow System */
-    --shadow-2xs: 0 1px 0 hsl(var(--foreground) / 0.04), 0 0 1px hsl(var(--foreground) / 0.04);
-    --shadow-xs: 0 1px 2px hsl(var(--foreground) / 0.06);
-    --shadow-sm: 0 1px 3px hsl(var(--foreground) / 0.08), 0 1px 2px hsl(var(--foreground) / 0.06);
-    --shadow-md: 0 4px 6px hsl(var(--foreground) / 0.08), 0 2px 4px hsl(var(--foreground) / 0.06);
-    --shadow-lg: 0 10px 15px hsl(var(--foreground) / 0.08), 0 4px 6px hsl(var(--foreground) / 0.05);
-    --shadow-xl: 0 20px 25px hsl(var(--foreground) / 0.10), 0 10px 10px hsl(var(--foreground) / 0.04);
-    --shadow-2xl: 0 25px 50px hsl(var(--foreground) / 0.25);
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-serif: 'Georgia', serif;
+    --font-mono: 'IBM Plex Mono', 'Monaco', 'Cascadia Code', monospace;
 
-    --radius: 0.5rem;
+    /* Radius - Large/Rounded (IT Support style) */
+    --radius: 1.25rem;
+    --radius-xs: 0.375rem;
+    --radius-sm: 0.75rem;
+    --radius-md: 1.25rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 1.75rem;
+    --radius-2xl: 2rem;
+    --radius-3xl: 2.25rem;
+    --radius-4xl: 2.5rem;
+
+    /* Shadows - Purple tinted for IT Support */
+    --shadow-2xs: 0 1px 0 0 rgba(23, 21, 63, 0.05);
+    --shadow-xs: 0 1px 2px 0 rgba(23, 21, 63, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(23, 21, 63, 0.02), 0 2px 20px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px -3px rgba(23, 21, 63, 0.02), 0 4px 20px -4px rgba(23, 21, 63, 0.06);
+    --shadow-xl: 0 20px 50px -5px rgba(23, 21, 63, 0.02), 0 8px 30px -6px rgba(23, 21, 63, 0.05);
+    --shadow-2xl: 0 25px 100px -12px rgba(23, 21, 63, 0.12);
+    --shadow: var(--shadow-md);
+
+    /* Spacing & Layout */
+    --spacing: 0.25rem;
+    --letter-spacing: 0em;
+    --tracking-normal: 0em;
+    --shadow-color: hsl(0 0% 0%);
+    --shadow-opacity: 0.2;
+    --shadow-blur: 3px;
+    --shadow-spread: 0px;
+    --shadow-offset-x: 0px;
+    --shadow-offset-y: 2px;
   }
 
-  /* Light mode override (optional) */
+  /* ==========================================================================
+     LIGHT MODE - IT Support System
+     ========================================================================== */
   .light {
-    --background: 0 0% 100%;
-    --foreground: 200 10% 10%;
+    /* Background & Foreground */
+    --background: 210 40% 98%;          /* gray-50 #f9fafb */
+    --foreground: 224 71% 4%;           /* gray-950 #030712 */
 
-    --card: 0 0% 98%;
-    --card-foreground: 200 10% 10%;
+    /* Card */
+    --card: 0 0% 100%;                  /* white */
+    --card-foreground: 224 71% 4%;      /* gray-950 */
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 200 10% 10%;
+    /* Popover */
+    --popover: 0 0% 100%;               /* white */
+    --popover-foreground: 224 71% 4%;   /* gray-950 */
 
-    --primary: 72 100% 50%;
-    --primary-foreground: 200 10% 8%;
+    /* Primary - Indigo (slightly darker for contrast) */
+    --primary: 239 84% 67%;             /* indigo-600 #4f46e5 */
+    --primary-foreground: 0 0% 100%;    /* white */
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 200 10% 20%;
+    /* Secondary */
+    --secondary: 220 14% 96%;           /* gray-100 #f3f4f6 */
+    --secondary-foreground: 220 27% 7%; /* gray-900 */
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    /* Muted */
+    --muted: 220 14% 96%;               /* gray-100 */
+    --muted-foreground: 220 9% 46%;     /* gray-500 */
 
-    --accent: 72 100% 50%;
-    --accent-foreground: 200 10% 8%;
+    /* Accent */
+    --accent: 220 14% 96%;              /* gray-100 */
+    --accent-foreground: 220 27% 7%;    /* gray-900 */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Destructive */
+    --destructive: 0 72% 51%;           /* red-600 #dc2626 */
+    --destructive-foreground: 0 86% 97%; /* red-50 */
 
+    /* Success */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     --success-soft: 142 30% 94%;
 
+    /* Warning */
     --warning: 38 92% 50%;
-    --warning-foreground: 200 10% 10%;
+    --warning-foreground: 224 71% 4%;
     --warning-soft: 38 60% 94%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 72 100% 50%;
+    /* Border & Input */
+    --border: 220 13% 91%;              /* gray-200 #e5e7eb */
+    --input: 220 13% 91%;
+    --ring: 220 13% 46%;                /* gray-400 */
 
-    /* Chart Colors - Light Mode */
-    --chart-1: 72 100% 50%;
-    --chart-2: 220 100% 48%;
-    --chart-3: 320 98% 47%;
-    --chart-4: 38 92% 50%;
-    --chart-5: 142 76% 36%;
+    /* Chart Colors - Light mode variants */
+    --chart-1: 24 95% 53%;              /* orange-600 #ea580c */
+    --chart-2: 175 84% 32%;             /* teal-600 #0d9488 */
+    --chart-3: 192 91% 22%;             /* cyan-900 #164e63 */
+    --chart-4: 271 81% 56%;             /* purple-500 */
+    --chart-5: 43 96% 56%;              /* amber-500 */
+
+    /* Sidebar */
+    --sidebar: 0 0% 100%;               /* white */
+    --sidebar-foreground: 224 71% 4%;   /* gray-950 */
+    --sidebar-primary: 220 27% 7%;      /* gray-900 */
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 220 14% 96%;      /* gray-100 */
+    --sidebar-accent-foreground: 220 27% 7%;
+    --sidebar-border: transparent;
+    --sidebar-ring: 220 13% 46%;        /* gray-400 */
+
+    /* Shadows - Lighter for light mode */
+    --shadow-2xs: 0 1px 0 0 rgba(23, 21, 63, 0.03);
+    --shadow-xs: 0 1px 2px 0 rgba(23, 21, 63, 0.03);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(23, 21, 63, 0.01), 0 2px 20px -2px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 30px -3px rgba(23, 21, 63, 0.01), 0 4px 20px -4px rgba(23, 21, 63, 0.04);
+    --shadow-xl: 0 20px 50px -5px rgba(23, 21, 63, 0.01), 0 8px 30px -6px rgba(23, 21, 63, 0.03);
+    --shadow-2xl: 0 25px 100px -12px rgba(23, 21, 63, 0.08);
+    --shadow: var(--shadow-md);
+    --shadow-opacity: 0.08;
   }
 
   * {
@@ -147,21 +225,21 @@ body > div[style*="z-index: 2147483647"] {
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.5;
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Sana Typography System */
+  /* IT Support Typography System */
   h1, .text-h1 {
-    @apply text-[2.125rem] font-medium tracking-tight;
+    @apply text-[2.125rem] font-semibold tracking-tight;
     line-height: 1.15;
   }
 
   h2, .text-h2 {
-    @apply text-[1.5rem] font-medium tracking-tight;
+    @apply text-[1.5rem] font-semibold tracking-tight;
     line-height: 1.25;
   }
 
@@ -187,22 +265,23 @@ body > div[style*="z-index: 2147483647"] {
 
   /* Monospace font for technical content */
   .font-mono, code, pre {
-    font-family: 'IBM Plex Mono', 'Monaco', 'Cascadia Code', monospace !important;
+    font-family: var(--font-mono) !important;
   }
 
-  /* Sana Scrollbar Styling - Hidden by default */
+  /* IT Support Scrollbar Styling */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
     background: transparent;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--muted-foreground) / 0.2);
-    border-radius: 3px;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -220,9 +299,9 @@ body > div[style*="z-index: 2147483647"] {
     display: block;
   }
 
-  /* Sana Gradients */
+  /* IT Support Gradients */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(72 100% 60%));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(239 84% 75%));
   }
 
   .gradient-success {
@@ -237,16 +316,16 @@ body > div[style*="z-index: 2147483647"] {
     background: linear-gradient(135deg, hsl(var(--destructive)), hsl(0 84% 50%));
   }
 
-  /* Sana Neon Glow Effect */
-  .glow-neon {
-    box-shadow: 0 0 20px hsl(72 100% 50% / 0.3),
-                0 0 40px hsl(72 100% 50% / 0.2),
-                0 0 60px hsl(72 100% 50% / 0.1);
+  /* IT Support Glow Effect - Indigo */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(239 84% 67% / 0.3),
+                0 0 40px hsl(239 84% 67% / 0.2),
+                0 0 60px hsl(239 84% 67% / 0.1);
   }
 
-  .glow-neon-sm {
-    box-shadow: 0 0 10px hsl(72 100% 50% / 0.2),
-                0 0 20px hsl(72 100% 50% / 0.1);
+  .glow-primary-sm {
+    box-shadow: 0 0 10px hsl(239 84% 67% / 0.2),
+                0 0 20px hsl(239 84% 67% / 0.1);
   }
 
   /* Animation Classes */
@@ -347,7 +426,7 @@ body > div[style*="z-index: 2147483647"] {
   .animated-gradient-border {
     position: relative;
     padding: 3px;
-    border-radius: 1rem;
+    border-radius: var(--radius-lg);
     background: hsl(var(--background));
   }
 
@@ -355,21 +434,24 @@ body > div[style*="z-index: 2147483647"] {
     animation: pathDashOffset 8s linear infinite;
   }
 
-  /* Card Hover Effects - Sana Style */
+  /* Card Hover Effects - IT Support Style */
   .card-hover {
-    @apply transition-all duration-150;
+    @apply transition-all duration-200;
+    border-radius: var(--radius-lg);
   }
 
   .card-hover:hover {
     background: hsl(var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 
-  /* Focus States - Sana Style */
+  /* Focus States - IT Support Style */
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
-  /* Sana Icon Sizing */
+  /* Icon Sizing */
   .icon-sm {
     @apply w-4 h-4;
   }
@@ -397,34 +479,36 @@ body > div[style*="z-index: 2147483647"] {
     color: hsl(var(--foreground) / 0.6);
   }
 
-  .text-muted-sana {
+  .text-muted-it {
     color: hsl(var(--foreground) / 0.4);
   }
 
-  /* Sana Glass Effects - Dark Mode */
+  /* IT Support Glass Effects - Dark Mode */
   .liquid-glass {
-    background: rgba(19, 19, 20, 0.85);
+    background: rgba(17, 24, 39, 0.85);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(232, 232, 232, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: var(--radius-lg);
   }
 
   .glass-card {
-    background: rgba(19, 19, 20, 0.6);
+    background: rgba(17, 24, 39, 0.6);
     backdrop-filter: blur(12px) saturate(150%);
     -webkit-backdrop-filter: blur(12px) saturate(150%);
-    border: 1px solid rgba(232, 232, 232, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
   }
 
   /* Light mode glass */
-  :root .liquid-glass {
+  .light .liquid-glass {
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
   }
 
-  :root .glass-card {
+  .light .glass-card {
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
@@ -434,72 +518,75 @@ body > div[style*="z-index: 2147483647"] {
     background-image: radial-gradient(circle, var(--tw-gradient-stops));
   }
 
-  /* Sana Sidebar Styling */
-  .sana-sidebar {
+  /* IT Support Sidebar Styling */
+  .it-sidebar {
     width: 280px;
-    background: hsl(var(--background));
-    border-right: 1px solid hsl(var(--border));
+    background: hsl(var(--sidebar));
+    border-right: 1px solid hsl(var(--sidebar-border));
+    border-radius: 0;
   }
 
-  .sana-sidebar-collapsed {
+  .it-sidebar-collapsed {
     width: 64px;
   }
 
-  /* Sana Input Styling */
-  .sana-input {
-    height: 44px;
+  /* IT Support Input Styling */
+  .it-input {
+    height: 48px;
     background: hsl(var(--secondary));
     border: 1px solid hsl(var(--border));
-    border-radius: 0.75rem;
-    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    padding: 0 1.25rem;
     font-size: 0.875rem;
-    transition: all 150ms ease;
+    transition: all 200ms ease;
   }
 
-  .sana-input:focus {
+  .it-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.1);
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.15);
   }
 
-  /* Sana Button Styles */
-  .sana-btn {
+  /* IT Support Button Styles */
+  .it-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 36px;
-    padding: 0 1rem;
+    height: 40px;
+    padding: 0 1.25rem;
     font-size: 0.875rem;
     font-weight: 500;
-    border-radius: 0.5rem;
-    transition: all 150ms ease;
+    border-radius: var(--radius-md);
+    transition: all 200ms ease;
   }
 
-  .sana-btn-primary {
+  .it-btn-primary {
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
   }
 
-  .sana-btn-primary:hover {
-    background: hsl(72 100% 45%);
+  .it-btn-primary:hover {
+    background: hsl(239 84% 60%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
   }
 
-  .sana-btn-secondary {
+  .it-btn-secondary {
     background: hsl(var(--secondary));
     color: hsl(var(--secondary-foreground));
   }
 
-  .sana-btn-secondary:hover {
+  .it-btn-secondary:hover {
     background: hsl(var(--accent));
   }
 
-  .sana-btn-ghost {
+  .it-btn-ghost {
     background: transparent;
     color: hsl(var(--foreground));
   }
 
-  .sana-btn-ghost:hover {
+  .it-btn-ghost:hover {
     background: hsl(var(--secondary));
   }
 }
@@ -507,8 +594,8 @@ body > div[style*="z-index: 2147483647"] {
 /*---break--- */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --color-background: hsl(var(--background));
@@ -542,10 +629,10 @@ body > div[style*="z-index: 2147483647"] {
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
-  --font-sans: Inter, sans-serif;
-  --font-mono: IBM Plex Mono, monospace;
-  --font-serif: Georgia, serif;
-  --radius: 0.5rem;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+  --radius: var(--radius);
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
   --tracking-wide: 0.025em;
@@ -573,150 +660,12 @@ body > div[style*="z-index: 2147483647"] {
 
 /*---break--- */
 
-/* Sana.ai Design Tokens - Native CSS Variables */
-/* DARK MODE DEFAULT - Sana.ai is a dark-first theme */
-:root {
-  --radius: 0.5rem;
-  /* #131314 background - Sana.ai dark */
-  --background: 240 6% 7%;
-  /* #e8e8e8 foreground */
-  --foreground: 0 0% 91%;
-  /* #1e1f20 card */
-  --card: 220 4% 12%;
-  --card-foreground: 0 0% 91%;
-  /* #1e1f20 popover */
-  --popover: 220 4% 12%;
-  --popover-foreground: 0 0% 91%;
-  /* #cdfe00 primary - Sana Neon Lime */
-  --primary: 72 100% 50%;
-  /* Dark text on neon */
-  --primary-foreground: 240 6% 7%;
-  /* #242628 secondary hover */
-  --secondary: 216 5% 15%;
-  --secondary-foreground: 0 0% 91%;
-  /* Same as secondary */
-  --muted: 216 5% 15%;
-  /* rgba(232, 232, 232, 0.6) = #8b8b8b solid */
-  --muted-foreground: 0 0% 55%;
-  /* #353536 tertiary */
-  --accent: 240 2% 21%;
-  --accent-foreground: 0 0% 91%;
-  /* #ff3b30 alert */
-  --destructive: 4 100% 59%;
-  /* #34c759 success */
-  --success: 142 69% 50%;
-  /* Border - subtle dark */
-  --border: 220 4% 18%;
-  --input: 220 4% 18%;
-  /* #cdfe00 ring */
-  --ring: 72 100% 50%;
-  /* Charts - Sana brand palette */
-  --chart-1: 72 100% 50%;
-  --chart-2: 220 100% 48%;
-  --chart-3: 320 98% 47%;
-  --chart-4: 38 92% 50%;
-  --chart-5: 142 69% 50%;
-  /* Sidebar - same as card */
-  --sidebar: 220 4% 12%;
-  --sidebar-foreground: 0 0% 91%;
-  --sidebar-primary: 72 100% 50%;
-  --sidebar-primary-foreground: 240 6% 7%;
-  --sidebar-accent: 240 2% 21%;
-  --sidebar-accent-foreground: 0 0% 91%;
-  --sidebar-border: 220 4% 18%;
-  --sidebar-ring: 72 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --font-sans: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-serif: Georgia, serif;
-  --font-mono: IBM Plex Mono, monospace;
-  --shadow-color: hsl(0 0% 0%);
-  --shadow-opacity: 0.3;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-offset-x: 0px;
-  --shadow-offset-y: 2px;
-  --letter-spacing: 0em;
-  --spacing: 0.25rem;
-  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.15);
-  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.18);
-  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.24), 0px 1px 2px -1px hsl(0 0% 0% / 0.24);
-  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.24), 0px 1px 2px -1px hsl(0 0% 0% / 0.24);
-  --shadow-md: 0px 4px 6px -1px hsl(0 0% 0% / 0.24), 0px 2px 4px -2px hsl(0 0% 0% / 0.24);
-  --shadow-lg: 0px 10px 15px -3px hsl(0 0% 0% / 0.24), 0px 4px 6px -4px hsl(0 0% 0% / 0.24);
-  --shadow-xl: 0px 20px 25px -5px hsl(0 0% 0% / 0.3), 0px 8px 10px -6px hsl(0 0% 0% / 0.3);
-  --shadow-2xl: 0px 25px 50px -12px hsl(0 0% 0% / 0.5);
-  --tracking-normal: 0em;
-}
-
-/*---break--- */
-
-/* Light mode override - optional */
-.light {
-  /* Light mode - white background */
-  --background: 0 0% 100%;
-  --foreground: 200 10% 10%;
-  --card: 0 0% 98%;
-  --card-foreground: 200 10% 10%;
-  --popover: 0 0% 98%;
-  --popover-foreground: 200 10% 10%;
-  --primary: 72 100% 50%;
-  --primary-foreground: 200 10% 8%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 200 10% 20%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 72 100% 50%;
-  --accent-foreground: 200 10% 8%;
-  --destructive: 0 84% 60%;
-  --success: 142 76% 36%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 72 100% 50%;
-  --chart-1: 72 100% 50%;
-  --chart-2: 220 100% 48%;
-  --chart-3: 320 98% 47%;
-  --chart-4: 38 92% 50%;
-  --chart-5: 142 76% 36%;
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 200 10% 10%;
-  --sidebar-primary: 72 100% 50%;
-  --sidebar-primary-foreground: 200 10% 8%;
-  --sidebar-accent: 0 0% 94%;
-  --sidebar-accent-foreground: 200 10% 10%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 72 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --shadow-color: hsl(0 0% 0%);
-  --shadow-opacity: 0.1;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-offset-x: 0px;
-  --shadow-offset-y: 2px;
-  --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.05);
-  --shadow-xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.06);
-  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.08);
-  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.08), 0px 1px 2px -1px hsl(0 0% 0% / 0.08);
-  --shadow-md: 0px 4px 6px -1px hsl(0 0% 0% / 0.08), 0px 2px 4px -2px hsl(0 0% 0% / 0.08);
-  --shadow-lg: 0px 10px 15px -3px hsl(0 0% 0% / 0.08), 0px 4px 6px -4px hsl(0 0% 0% / 0.08);
-  --shadow-xl: 0px 20px 25px -5px hsl(0 0% 0% / 0.1), 0px 8px 10px -6px hsl(0 0% 0% / 0.1);
-  --shadow-2xl: 0px 25px 50px -12px hsl(0 0% 0% / 0.25);
-}
-
-/*---break--- */
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-  }
-
-  /* Light mode contrast fix: Use darker green for text-primary to meet WCAG AA (4.5:1) */
-  /* Lime green (#CDFE00) has only 1.4:1 contrast on white - needs darker variant for text */
-  .light .text-primary,
-  .light [class*="text-primary"] {
-    color: hsl(85 100% 25%) !important; /* Dark green #3D7A00 - 5.5:1 contrast ratio */
   }
 
   /* Smooth color transitions for theming */
@@ -734,7 +683,12 @@ body > div[style*="z-index: 2147483647"] {
   ) {
     transition-property: background-color, border-color, color, box-shadow;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    transition-duration: 200ms;
+  }
+
+  /* Theme transition for smooth mode switching */
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -760,4 +714,43 @@ body > div[style*="z-index"]:last-of-type {
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+/*---break--- */
+
+/* Theme Toggle Button Styles */
+.theme-toggle {
+  @apply relative inline-flex items-center justify-center w-10 h-10 rounded-full;
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  transition: all 200ms ease;
+}
+
+.theme-toggle:hover {
+  background: hsl(var(--accent));
+  transform: scale(1.05);
+}
+
+.theme-toggle svg {
+  @apply w-5 h-5;
+  color: hsl(var(--foreground));
+  transition: transform 0.3s ease;
+}
+
+.light .theme-toggle .icon-sun {
+  transform: rotate(0deg) scale(1);
+}
+
+.light .theme-toggle .icon-moon {
+  transform: rotate(90deg) scale(0);
+  position: absolute;
+}
+
+:root .theme-toggle .icon-sun {
+  transform: rotate(-90deg) scale(0);
+  position: absolute;
+}
+
+:root .theme-toggle .icon-moon {
+  transform: rotate(0deg) scale(1);
 }

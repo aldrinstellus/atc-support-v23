@@ -20,10 +20,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Load theme from localStorage on mount
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('sana-theme') as Theme | null;
+    const savedTheme = localStorage.getItem('it-support-theme') as Theme | null;
     if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
       setThemeState(savedTheme);
       updateDocumentClass(savedTheme);
+    } else {
+      // Default to dark mode (IT Support System default)
+      updateDocumentClass('dark');
     }
   }, []);
 
@@ -35,7 +38,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('sana-theme', newTheme);
+    localStorage.setItem('it-support-theme', newTheme);
     updateDocumentClass(newTheme);
   }, []);
 
