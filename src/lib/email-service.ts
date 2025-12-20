@@ -534,6 +534,180 @@ export function deleteEmailSignature(agentId: string): boolean {
 }
 
 // ============================================================================
+// CRM Internal Notes (PRD 1.5.2)
+// Add internal notes to tickets documenting draft actions
+// ============================================================================
+
+export interface InternalNoteOptions {
+  ticketId: string;
+  agentId: string;
+  agentName: string;
+  action: 'DRAFT_GENERATED' | 'DRAFT_APPROVED' | 'DRAFT_REJECTED' | 'DRAFT_SENT' | 'DRAFT_ESCALATED' | 'DRAFT_REGENERATED';
+  details: {
+    draftId?: string;
+    confidenceScore?: number;
+    tone?: string;
+    detailLevel?: string;
+    editPercent?: number;
+    rejectionReason?: string;
+    escalationReason?: string;
+    escalationPriority?: string;
+    sentAt?: Date;
+    recipientCount?: number;
+    ccCount?: number;
+    bccCount?: number;
+    attachmentCount?: number;
+  };
+}
+
+/**
+ * Add internal note to a ticket via Zoho Desk
+ */
+export async function addInternalNote(
+  options: InternalNoteOptions
+): Promise<{ success: boolean; noteId?: string; error?: string }> {
+  const DEMO_MODE = process.env.DEMO_MODE === 'true';
+
+  // Format note content
+  const noteContent = formatInternalNote(options);
+
+  if (DEMO_MODE) {
+    // Simulate successful note creation in demo mode
+    console.log(`[CRM Note] Demo mode - ${options.action} note for ticket ${options.ticketId}`);
+    console.log(noteContent);
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return {
+      success: true,
+      noteId: `NOTE-${Date.now()}`,
+    };
+  }
+
+  // Real Zoho Desk integration
+  try {
+    const orgId = process.env.ZOHO_ORG_ID;
+    const accessToken = process.env.ZOHO_ACCESS_TOKEN;
+
+    if (!orgId || !accessToken) {
+      // Silent fail in demo mode - don't block the main operation
+      console.warn('[CRM Note] Zoho Desk credentials not configured, skipping internal note');
+      return { success: false, error: 'Zoho Desk credentials not configured' };
+    }
+
+    const response = await fetch(
+      `https://desk.zoho.com/api/v1/tickets/${options.ticketId}/comments`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Zoho-oauthtoken ${accessToken}`,
+          orgId: orgId,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content: noteContent,
+          isPublic: false, // Internal note, not visible to customer
+          contentType: 'html',
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('[CRM Note] Failed to add internal note:', errorData);
+      return { success: false, error: errorData.message || 'Failed to add internal note' };
+    }
+
+    const data = await response.json();
+    return { success: true, noteId: data.id };
+  } catch (error) {
+    console.error('[CRM Note] Error adding internal note:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
+
+/**
+ * Format internal note content based on action type
+ */
+function formatInternalNote(options: InternalNoteOptions): string {
+  const { action, agentName, details } = options;
+  const timestamp = new Date().toISOString();
+
+  const lines: string[] = [
+    '<div style="font-family: Arial, sans-serif; font-size: 13px; color: #333;">',
+    `<p style="color: #666; font-size: 11px; margin: 0 0 8px 0;">🤖 <strong>AI Support System</strong> • ${timestamp}</p>`,
+  ];
+
+  switch (action) {
+    case 'DRAFT_GENERATED':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>📝 AI Draft Generated</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.confidenceScore !== undefined) lines.push(`<li>Confidence Score: ${details.confidenceScore}%</li>`);
+      if (details.tone) lines.push(`<li>Tone: ${details.tone}</li>`);
+      lines.push('</ul>');
+      break;
+
+    case 'DRAFT_APPROVED':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>✅ Draft Approved</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      lines.push(`<li>Approved by: ${agentName}</li>`);
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.editPercent !== undefined && details.editPercent > 0) {
+        lines.push(`<li>Edit percentage: ${details.editPercent.toFixed(1)}%</li>`);
+      }
+      lines.push('</ul>');
+      break;
+
+    case 'DRAFT_REJECTED':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>❌ Draft Rejected</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      lines.push(`<li>Rejected by: ${agentName}</li>`);
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.rejectionReason) lines.push(`<li>Reason: ${details.rejectionReason}</li>`);
+      lines.push('</ul>');
+      break;
+
+    case 'DRAFT_SENT':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>📤 Response Sent to Customer</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      lines.push(`<li>Sent by: ${agentName}</li>`);
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.sentAt) lines.push(`<li>Sent at: ${new Date(details.sentAt).toLocaleString()}</li>`);
+      if (details.recipientCount !== undefined) lines.push(`<li>Recipients: ${details.recipientCount}</li>`);
+      if (details.ccCount !== undefined && details.ccCount > 0) lines.push(`<li>CC: ${details.ccCount}</li>`);
+      if (details.bccCount !== undefined && details.bccCount > 0) lines.push(`<li>BCC: ${details.bccCount}</li>`);
+      if (details.attachmentCount !== undefined && details.attachmentCount > 0) {
+        lines.push(`<li>Attachments: ${details.attachmentCount}</li>`);
+      }
+      lines.push('</ul>');
+      break;
+
+    case 'DRAFT_ESCALATED':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>⚠️ Draft Escalated</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      lines.push(`<li>Escalated by: ${agentName}</li>`);
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.escalationPriority) lines.push(`<li>Priority: ${details.escalationPriority}</li>`);
+      if (details.escalationReason) lines.push(`<li>Reason: ${details.escalationReason}</li>`);
+      lines.push('</ul>');
+      break;
+
+    case 'DRAFT_REGENERATED':
+      lines.push('<p style="margin: 0 0 8px 0;"><strong>🔄 Draft Regenerated</strong></p>');
+      lines.push('<ul style="margin: 0; padding-left: 20px;">');
+      lines.push(`<li>Requested by: ${agentName}</li>`);
+      if (details.draftId) lines.push(`<li>Draft ID: ${details.draftId}</li>`);
+      if (details.tone) lines.push(`<li>New tone: ${details.tone}</li>`);
+      if (details.detailLevel) lines.push(`<li>Detail level: ${details.detailLevel}</li>`);
+      if (details.confidenceScore !== undefined) lines.push(`<li>New confidence: ${details.confidenceScore}%</li>`);
+      lines.push('</ul>');
+      break;
+  }
+
+  lines.push('</div>');
+  return lines.join('\n');
+}
+
+// ============================================================================
 // Demo Data
 // ============================================================================
 

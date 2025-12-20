@@ -1,6 +1,7 @@
 'use client';
 
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { CustomerPersonaProvider } from '@/contexts/CustomerPersonaContext';
 
 export default function CustomerLayout({
   children,
@@ -9,9 +10,11 @@ export default function CustomerLayout({
 }) {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-gray-950">
-        {children}
-      </div>
+      <CustomerPersonaProvider>
+        <div className="min-h-screen bg-gray-950">
+          {children}
+        </div>
+      </CustomerPersonaProvider>
     </ThemeProvider>
   );
 }

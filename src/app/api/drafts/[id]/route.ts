@@ -1,12 +1,18 @@
 // ============================================================================
-// V20 ITSS - Single Draft API
+// V23 ITSS - Single Draft API
 // GET /api/drafts/[id] - Get draft by ID
 // PATCH /api/drafts/[id] - Update draft
 // DELETE /api/drafts/[id] - Delete draft
+// PRD 1.4.3: Auto-flag significant edits (>30%) for learning loop
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import {
+  calculateChangePercent,
+  isSignificantEdit,
+  generateLearningCandidateId,
+} from '@/types/learning-loop'
 
 type RouteParams = { params: Promise<{ id: string }> }
 
@@ -124,13 +130,11 @@ export async function PATCH(
       const latestVersion = existingDraft.versions[0]?.version || 0
       const previousContent = existingDraft.draftContent
 
-      // Calculate edit distance
+      // PRD 1.4.3: Calculate proper edit distance using Levenshtein
+      const changePercent = calculateChangePercent(previousContent, draftContent)
       const editDistance = Math.abs(draftContent.length - previousContent.length)
-      const changePercent = previousContent.length > 0
-        ? (editDistance / previousContent.length) * 100
-        : 100
 
-      await prisma.draftVersion.create({
+      const newVersion = await prisma.draftVersion.create({
         data: {
           draftId: existingDraft.id,
           version: latestVersion + 1,
@@ -143,6 +147,32 @@ export async function PATCH(
           changePercent,
         },
       })
+
+      // PRD 1.4.3: Auto-flag significant edits (>30%) for learning loop
+      // Only flag when edit is complete (status change or explicit flag)
+      if (isSignificantEdit(changePercent) && status === 'APPROVED') {
+        try {
+          await prisma.learningCandidate.create({
+            data: {
+              candidateId: generateLearningCandidateId(),
+              draftId: existingDraft.id,
+              draftVersionId: newVersion.id,
+              originalContent: previousContent,
+              finalContent: draftContent,
+              changePercent,
+              editDistance,
+              editType: 'AGENT_EDIT',
+              category: existingDraft.category,
+              agentId: editedBy,
+              agentName: editedByName || 'Agent',
+              confidenceScore: existingDraft.confidenceScore,
+              status: 'PENDING',
+            },
+          })
+        } catch (lcError) {
+          console.error('[Learning Loop] Failed to create candidate:', lcError)
+        }
+      }
     }
 
     // Fetch updated draft with versions

@@ -33,6 +33,12 @@ export type Complexity = 'simple' | 'moderate' | 'complex'
 // Tone options for generation/regeneration
 export type DraftTone = 'formal' | 'friendly' | 'technical'
 
+// Detail level options for regeneration (PRD 1.3.3)
+export type DetailLevel = 'brief' | 'standard' | 'detailed' | 'comprehensive'
+
+// Escalation priority levels
+export type EscalationPriority = 'low' | 'medium' | 'high' | 'critical'
+
 // Ticket category classification
 export type TicketCategory =
   | 'password_reset'
@@ -82,6 +88,14 @@ export interface Draft {
   reviewedById?: string | null
   approvedById?: string | null
   rejectionReason?: string | null
+
+  // Escalation fields (PRD 1.3.4)
+  escalatedAt?: Date | null
+  escalatedById?: string | null
+  escalatedTo?: string | null
+  escalationReason?: string | null
+  escalationPriority?: EscalationPriority | null
+  escalationNotes?: string | null
 
   // Knowledge base
   kbArticlesUsed: string[]
@@ -193,8 +207,18 @@ export interface RejectDraftRequest {
 // Regenerate draft request
 export interface RegenerateDraftRequest {
   tone?: DraftTone
+  detailLevel?: DetailLevel          // PRD 1.3.3 - brief/standard/detailed/comprehensive
   additionalContext?: string
   focusAreas?: string[]
+}
+
+// Escalate draft request (PRD 1.3.4)
+export interface EscalateDraftRequest {
+  escalationReason: string           // Required: why escalation needed
+  escalatedById: string              // Required: who escalated
+  escalatedTo?: string               // Optional: supervisor ID
+  escalationPriority?: EscalationPriority  // Optional: urgency level
+  escalationNotes?: string           // Optional: additional context
 }
 
 // Send draft request

@@ -3,11 +3,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Hide Vercel Dev Tools widget - can be removed later when needed */
+/* Hide Vercel Dev Tools widget and Next.js dev indicators */
 [data-vercel-dev-tools],
 #__vercel_dev_tools,
 .vercel-dev-tools,
-body > div[style*="z-index: 2147483647"] {
+body > div[style*="z-index: 2147483647"],
+nextjs-portal,
+[data-nextjs-dialog],
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;

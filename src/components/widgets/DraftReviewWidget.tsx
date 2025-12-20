@@ -9,6 +9,7 @@ import {
   Clock,
   Sparkles,
   AlertCircle,
+  AlertTriangle,
   Edit3,
   Copy,
   ThumbsUp,
@@ -21,7 +22,7 @@ import {
 } from 'lucide-react';
 import type { DraftReviewData } from '@/types/widget';
 import { getConfidenceColor, getConfidenceLevel } from '@/types/draft';
-import type { DraftTone, DraftVersion } from '@/types/draft';
+import type { DraftTone, DraftVersion, DetailLevel, EscalationPriority } from '@/types/draft';
 import { RichTextEditor, VersionHistoryPanel, ReadabilityScore, AttachmentPicker } from '@/components/editor';
 import type { EmailAttachment } from '@/types/email';
 
@@ -34,6 +35,8 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(data.draftContent);
   const [selectedTone, setSelectedTone] = useState<DraftTone>(data.tone || 'friendly');
+  // PRD 1.3.3: Detail level for regeneration
+  const [selectedDetailLevel, setSelectedDetailLevel] = useState<DetailLevel>('standard');
   const [rejectionReason, setRejectionReason] = useState('');
   const [showRejectForm, setShowRejectForm] = useState(false);
   // PRD 1.3.4: Send confirmation dialog & duplicate prevention
@@ -42,6 +45,11 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
   const [sendError, setSendError] = useState<string | null>(null);
   // PRD 1.5.1: Attachment management
   const [attachments, setAttachments] = useState<EmailAttachment[]>([]);
+  // PRD 1.3.4: Escalation form
+  const [showEscalateForm, setShowEscalateForm] = useState(false);
+  const [escalationReason, setEscalationReason] = useState('');
+  const [escalationPriority, setEscalationPriority] = useState<EscalationPriority>('high');
+  const [escalationNotes, setEscalationNotes] = useState('');
 
   const statusColors: Record<string, string> = {
     GENERATING: 'border-chart-3/30 bg-lime-500/20 text-chart-3',
@@ -67,6 +75,22 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
     { value: 'technical', label: 'Technical', description: 'Detailed, precise' },
   ];
 
+  // PRD 1.3.3: Detail level options
+  const detailLevelOptions: { value: DetailLevel; label: string; description: string }[] = [
+    { value: 'brief', label: 'Brief', description: '2-3 sentences, essential only' },
+    { value: 'standard', label: 'Standard', description: '1-2 paragraphs, balanced' },
+    { value: 'detailed', label: 'Detailed', description: '2-3 paragraphs with tips' },
+    { value: 'comprehensive', label: 'Comprehensive', description: 'Full coverage with examples' },
+  ];
+
+  // PRD 1.3.4: Escalation priority options
+  const escalationPriorityOptions: { value: EscalationPriority; label: string; color: string }[] = [
+    { value: 'low', label: 'Low', color: 'bg-success/20 text-success' },
+    { value: 'medium', label: 'Medium', color: 'bg-chart-3/20 text-chart-3' },
+    { value: 'high', label: 'High', color: 'bg-chart-4/20 text-chart-4' },
+    { value: 'critical', label: 'Critical', color: 'bg-destructive/20 text-destructive' },
+  ];
+
   const handleApprove = () => {
     onAction?.('approve', {
       draftId: data.draftId,
@@ -88,7 +112,23 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
     onAction?.('regenerate', {
       draftId: data.draftId,
       tone: selectedTone,
+      detailLevel: selectedDetailLevel,
     });
+  };
+
+  // PRD 1.3.4: Handle escalation
+  const handleEscalate = () => {
+    if (!escalationReason.trim()) return;
+    onAction?.('escalate', {
+      draftId: data.draftId,
+      escalationReason,
+      escalationPriority,
+      escalationNotes: escalationNotes.trim() || undefined,
+    });
+    setShowEscalateForm(false);
+    setEscalationReason('');
+    setEscalationNotes('');
+    setEscalationPriority('high');
   };
 
   // PRD 1.3.4: Send with confirmation dialog and duplicate prevention
@@ -285,7 +325,7 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
           </div>
 
           {/* Tone Selector */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-2">
             <span className="text-xs text-muted-foreground">Tone:</span>
             {toneOptions.map((tone) => (
               <button
@@ -299,6 +339,25 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
                 title={tone.description}
               >
                 {tone.label}
+              </button>
+            ))}
+          </div>
+
+          {/* PRD 1.3.3: Detail Level Selector */}
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs text-muted-foreground">Detail:</span>
+            {detailLevelOptions.map((level) => (
+              <button
+                key={level.value}
+                onClick={() => setSelectedDetailLevel(level.value)}
+                className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
+                  selectedDetailLevel === level.value
+                    ? 'bg-chart-3 text-chart-3-foreground'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+                title={level.description}
+              >
+                {level.label}
               </button>
             ))}
           </div>
@@ -489,6 +548,80 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
         </div>
       )}
 
+      {/* PRD 1.3.4: Escalation Form */}
+      {showEscalateForm && (
+        <div className="glass-card rounded-lg border border-chart-4/30 bg-chart-4/10 p-4 backdrop-blur-md">
+          <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4 text-chart-4" />
+            Escalate to Supervisor
+          </h4>
+
+          {/* Escalation Reason */}
+          <div className="mb-3">
+            <label className="text-xs text-muted-foreground mb-1 block">Reason for Escalation *</label>
+            <textarea
+              value={escalationReason}
+              onChange={(e) => setEscalationReason(e.target.value)}
+              className="w-full min-h-[80px] p-3 rounded bg-card border border-border text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-chart-4"
+              placeholder="Why does this draft need supervisor review?"
+            />
+          </div>
+
+          {/* Priority Selection */}
+          <div className="mb-3">
+            <label className="text-xs text-muted-foreground mb-1 block">Priority Level</label>
+            <div className="flex items-center gap-2">
+              {escalationPriorityOptions.map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => setEscalationPriority(option.value)}
+                  className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
+                    escalationPriority === option.value
+                      ? option.color + ' ring-2 ring-offset-2 ring-offset-background ring-current'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Notes */}
+          <div className="mb-3">
+            <label className="text-xs text-muted-foreground mb-1 block">Additional Notes (Optional)</label>
+            <textarea
+              value={escalationNotes}
+              onChange={(e) => setEscalationNotes(e.target.value)}
+              className="w-full min-h-[60px] p-3 rounded bg-card border border-border text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-chart-4"
+              placeholder="Any additional context for the supervisor..."
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleEscalate}
+              disabled={!escalationReason.trim()}
+              className="flex items-center gap-2 px-4 py-2 rounded font-medium text-sm bg-chart-4 text-chart-4-foreground hover:bg-chart-4/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <AlertTriangle className="h-4 w-4" />
+              Confirm Escalation
+            </button>
+            <button
+              onClick={() => {
+                setShowEscalateForm(false);
+                setEscalationReason('');
+                setEscalationNotes('');
+                setEscalationPriority('high');
+              }}
+              className="px-4 py-2 rounded font-medium text-sm bg-muted text-muted-foreground hover:bg-muted/80 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Action Buttons */}
       <div className="flex items-center justify-between pt-4 border-t border-border/50">
         <div className="flex items-center gap-2">
@@ -509,8 +642,16 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
         </div>
 
         <div className="flex items-center gap-3">
-          {data.status !== 'APPROVED' && data.status !== 'SENT' && (
+          {data.status !== 'APPROVED' && data.status !== 'SENT' && data.status !== 'ESCALATED' && (
             <>
+              {/* PRD 1.3.4: Escalate Button */}
+              <button
+                onClick={() => setShowEscalateForm(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded font-medium text-sm bg-muted text-muted-foreground hover:bg-chart-4/20 hover:text-chart-4 transition-colors"
+              >
+                <AlertTriangle className="h-4 w-4" />
+                Escalate
+              </button>
               <button
                 onClick={() => setShowRejectForm(true)}
                 className="flex items-center gap-2 px-4 py-2 rounded font-medium text-sm bg-muted text-muted-foreground hover:bg-destructive/20 hover:text-destructive transition-colors"
@@ -526,6 +667,13 @@ export function DraftReviewWidget({ data, onAction }: DraftReviewWidgetProps) {
                 Approve
               </button>
             </>
+          )}
+
+          {data.status === 'ESCALATED' && (
+            <div className="flex items-center gap-2 text-chart-4">
+              <AlertTriangle className="h-4 w-4" />
+              <span className="text-sm font-medium">Escalated to Supervisor</span>
+            </div>
           )}
 
           {data.status === 'APPROVED' && (

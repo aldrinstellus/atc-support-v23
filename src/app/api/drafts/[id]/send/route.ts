@@ -1,14 +1,15 @@
 // ============================================================================
-// V20 ITSS - Send Draft API
+// V23 ITSS - Send Draft API
 // PRD 1.5.1: Send approved draft with CC/BCC and Attachments support
+// PRD 1.5.2: Add internal note documenting action
 // POST /api/drafts/[id]/send - Send approved draft to customer via Zoho Desk
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import type { EmailRecipient, SendEmailResponse } from '@/types/email'
-import { isValidEmail, formatFileSize, EMAIL_CONFIG } from '@/types/email'
-import { sendEmail, getDraftAttachments } from '@/lib/email-service'
+import { isValidEmail, EMAIL_CONFIG } from '@/types/email'
+import { sendEmail, getDraftAttachments, addInternalNote } from '@/lib/email-service'
 
 type RouteParams = { params: Promise<{ id: string }> }
 
@@ -57,6 +58,8 @@ export async function POST(
       ccRecipients,
       bccRecipients,
       attachmentIds,
+      sentById,        // PRD 1.5.2: Who is sending
+      sentByName,      // PRD 1.5.2: Display name
     } = body
 
     // Find draft
@@ -179,6 +182,27 @@ export async function POST(
         },
       },
     })
+
+    // PRD 1.5.2: Add internal note documenting the send action
+    try {
+      await addInternalNote({
+        ticketId: existingDraft.ticketId,
+        agentId: sentById || existingDraft.approvedById || 'system',
+        agentName: sentByName || 'Agent',
+        action: 'DRAFT_SENT',
+        details: {
+          draftId: existingDraft.draftId,
+          sentAt: new Date(),
+          recipientCount: toRecipients.length,
+          ccCount: ccParsed.length,
+          bccCount: bccParsed.length,
+          attachmentCount: sendResult.attachmentCount || 0,
+        },
+      })
+    } catch (noteError) {
+      // Log but don't fail the send if internal note fails
+      console.error('[Draft Send] Failed to add internal note:', noteError)
+    }
 
     return NextResponse.json({
       success: true,

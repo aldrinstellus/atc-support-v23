@@ -1,10 +1,12 @@
 // ============================================================================
-// V20 ITSS - Reject Draft API
+// V23 ITSS - Reject Draft API
 // POST /api/drafts/[id]/reject - Reject draft with reason
+// PRD 1.5.2: Add internal note documenting action
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { addInternalNote } from '@/lib/email-service'
 
 type RouteParams = { params: Promise<{ id: string }> }
 
@@ -19,6 +21,7 @@ export async function POST(
     const {
       rejectionReason,   // Required: why the draft was rejected
       reviewedById,      // Required: who rejected
+      reviewedByName,    // Optional: display name
     } = body
 
     if (!rejectionReason) {
@@ -77,6 +80,22 @@ export async function POST(
       where: { id: existingDraft.id },
       include: { versions: { orderBy: { version: 'desc' } } },
     })
+
+    // PRD 1.5.2: Add internal note documenting the rejection
+    try {
+      await addInternalNote({
+        ticketId: existingDraft.ticketId,
+        agentId: reviewedById,
+        agentName: reviewedByName || 'Agent',
+        action: 'DRAFT_REJECTED',
+        details: {
+          draftId: existingDraft.draftId,
+          rejectionReason,
+        },
+      })
+    } catch (noteError) {
+      console.error('[Draft Reject] Failed to add internal note:', noteError)
+    }
 
     return NextResponse.json({
       success: true,

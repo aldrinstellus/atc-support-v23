@@ -1,10 +1,17 @@
 // ============================================================================
-// V20 ITSS - Approve Draft API
+// V23 ITSS - Approve Draft API
 // POST /api/drafts/[id]/approve - Approve draft for sending
+// PRD 1.4.3: Auto-flag significant edits (>30%) for learning loop
 // ============================================================================
 
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import {
+  calculateChangePercent,
+  isSignificantEdit,
+  generateLearningCandidateId,
+} from '@/types/learning-loop'
+import { addInternalNote } from '@/lib/email-service'
 
 type RouteParams = { params: Promise<{ id: string }> }
 
@@ -77,15 +84,16 @@ export async function POST(
     })
 
     // If content was changed during approval, create a new version
+    let learningCandidate = null
     if (finalContent && finalContent !== existingDraft.draftContent) {
       const latestVersion = existingDraft.versions[0]?.version || 0
       const previousContent = existingDraft.draftContent
-      const editDistance = Math.abs(finalContent.length - previousContent.length)
-      const changePercent = previousContent.length > 0
-        ? (editDistance / previousContent.length) * 100
-        : 0
 
-      await prisma.draftVersion.create({
+      // PRD 1.4.3: Calculate proper edit distance
+      const changePercent = calculateChangePercent(previousContent, finalContent)
+      const editDistance = Math.abs(finalContent.length - previousContent.length)
+
+      const newVersion = await prisma.draftVersion.create({
         data: {
           draftId: existingDraft.id,
           version: latestVersion + 1,
@@ -98,6 +106,33 @@ export async function POST(
           changePercent,
         },
       })
+
+      // PRD 1.4.3: Auto-flag significant edits (>30%) for learning loop
+      if (isSignificantEdit(changePercent)) {
+        try {
+          learningCandidate = await prisma.learningCandidate.create({
+            data: {
+              candidateId: generateLearningCandidateId(),
+              draftId: existingDraft.id,
+              draftVersionId: newVersion.id,
+              originalContent: previousContent,
+              finalContent: finalContent,
+              changePercent,
+              editDistance,
+              editType: 'AGENT_EDIT',
+              category: existingDraft.category,
+              agentId: approvedById,
+              agentName: approvedByName || 'Agent',
+              confidenceScore: existingDraft.confidenceScore,
+              status: 'PENDING',
+            },
+          })
+          console.log(`[Learning Loop] Created candidate ${learningCandidate.candidateId} for draft ${existingDraft.draftId} (${changePercent.toFixed(1)}% change)`)
+        } catch (lcError) {
+          // Log but don't fail the approval if learning candidate creation fails
+          console.error('[Learning Loop] Failed to create candidate:', lcError)
+        }
+      }
     }
 
     // Fetch complete draft
@@ -106,10 +141,34 @@ export async function POST(
       include: { versions: { orderBy: { version: 'desc' } } },
     })
 
+    // PRD 1.5.2: Add internal note documenting the approval
+    try {
+      const editPercent = learningCandidate?.changePercent || 0
+      await addInternalNote({
+        ticketId: existingDraft.ticketId,
+        agentId: approvedById,
+        agentName: approvedByName || 'Agent',
+        action: 'DRAFT_APPROVED',
+        details: {
+          draftId: existingDraft.draftId,
+          editPercent,
+        },
+      })
+    } catch (noteError) {
+      console.error('[Draft Approve] Failed to add internal note:', noteError)
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Draft approved successfully',
       draft: completeDraft,
+      // PRD 1.4.3: Include learning candidate info if flagged
+      learningCandidate: learningCandidate ? {
+        id: learningCandidate.id,
+        candidateId: learningCandidate.candidateId,
+        changePercent: learningCandidate.changePercent,
+        flaggedForTraining: true,
+      } : null,
     })
   } catch (error) {
     console.error('[Draft Approve] Error:', error)

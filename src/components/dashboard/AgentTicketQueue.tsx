@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, ArrowUpDown, Calendar, Filter, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { AlertCircle, ArrowUpDown, Calendar, Filter, ChevronLeft, ChevronRight, RefreshCw, SlidersHorizontal } from 'lucide-react';
 import Link from 'next/link';
+import { TicketFilters, type TicketFilterState } from './TicketFilters';
 
 type TicketStatus = 'pending' | 'in_review' | 'approved' | 'rejected';
 type SortField = 'date' | 'priority' | 'status';
@@ -61,6 +62,9 @@ export function AgentTicketQueue() {
   // PRD 1.2.2: Auto-refresh state
   const [lastRefreshed, setLastRefreshed] = useState(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
+  // PRD 1.2.3: Advanced filters state
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [advancedFilters, setAdvancedFilters] = useState<TicketFilterState>({});
 
   // PRD 1.2.2: Manual refresh function
   const handleRefresh = useCallback(async () => {
@@ -83,6 +87,19 @@ export function AgentTicketQueue() {
 
   const filteredTickets = mockTickets
     .filter(ticket => filterStatus === 'all' || ticket.status === filterStatus)
+    // PRD 1.2.3: Date range filter
+    .filter(ticket => {
+      if (!advancedFilters.dateRange?.from && !advancedFilters.dateRange?.to) return true;
+      const ticketDate = ticket.createdAt.toISOString().split('T')[0];
+      if (advancedFilters.dateRange?.from && ticketDate < advancedFilters.dateRange.from) return false;
+      if (advancedFilters.dateRange?.to && ticketDate > advancedFilters.dateRange.to) return false;
+      return true;
+    })
+    // PRD 1.2.3: Customer filter (in real app, would filter by customerId)
+    .filter(ticket => {
+      if (!advancedFilters.customerName) return true;
+      return ticket.customer.toLowerCase().includes(advancedFilters.customerName.toLowerCase());
+    })
     .sort((a, b) => {
       let comparison = 0;
       switch (sortField) {
@@ -97,6 +114,13 @@ export function AgentTicketQueue() {
       return sortAscending ? comparison : -comparison;
     });
 
+  // Count active advanced filters
+  const advancedFilterCount = [
+    advancedFilters.dateRange?.from || advancedFilters.dateRange?.to,
+    advancedFilters.customerId,
+    advancedFilters.assignedAgentId,
+  ].filter(Boolean).length;
+
   // PRD 1.2.2: Pagination calculations
   const totalPages = Math.ceil(filteredTickets.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -106,7 +130,7 @@ export function AgentTicketQueue() {
   // Reset to page 1 when filter changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [filterStatus]);
+  }, [filterStatus, advancedFilters]);
 
   return (
     <div className="space-y-4">
@@ -127,6 +151,21 @@ export function AgentTicketQueue() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          {/* PRD 1.2.3: Advanced filters toggle */}
+          <button
+            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            className={`glass-card border-border px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:bg-card/90 transition-colors ${
+              showAdvancedFilters || advancedFilterCount > 0 ? 'text-primary border-primary/50' : 'text-foreground'
+            }`}
+          >
+            <SlidersHorizontal className="w-4 h-4" />
+            Advanced
+            {advancedFilterCount > 0 && (
+              <span className="px-1.5 py-0.5 text-xs rounded-full bg-primary text-primary-foreground">
+                {advancedFilterCount}
+              </span>
+            )}
+          </button>
           <div className="relative">
             <select
               value={filterStatus}
@@ -150,6 +189,23 @@ export function AgentTicketQueue() {
           </button>
         </div>
       </div>
+
+      {/* PRD 1.2.3: Advanced Filters Panel */}
+      <AnimatePresence>
+        {showAdvancedFilters && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <TicketFilters
+              filters={advancedFilters}
+              onFiltersChange={setAdvancedFilters}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="glass-card border-border rounded-xl overflow-hidden">
         <div className="divide-y divide-border">
